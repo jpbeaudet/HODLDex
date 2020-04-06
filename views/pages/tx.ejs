@@ -1,0 +1,854 @@
+<!-- views/pages/tx.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head2 %>
+</head>
+<body class=" ">
+
+<header>
+    <% include ../partials/header2 %>
+</header>
+
+<main>
+        <!-- START CONTENT -->
+        <section id="main-content" class=" ">
+            <div class="wrapper main-wrapper row" style=''>
+<!-- Metamask Warning (if metamask is not installed) start -->
+	<% include ../partials/metamask_warning %>
+<!-- Subheader end -->
+                <div class='col-xs-12'>
+                    <div class="page-title">
+
+                        <div class="pull-left">
+                            <!-- PAGE HEADING TAG - START -->
+                            <h1 class="title">Transaction Hash: <%= txid%></h1>
+                            <!-- PAGE HEADING TAG - END -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class='col-xs-12'>
+                    <div class="page-title">
+
+                        <div class="pull-left">
+                            <!-- PAGE HEADING TAG - START -->
+                            <h1 class="title">Crypto Dashboard</h1>
+                            <!-- PAGE HEADING TAG - END -->
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <section class="box nobox marginBottom0">
+                        <div class="content-body">
+                            <div class="row">
+                               
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="statistics-box">
+                                        <div class="mb-15">
+                                            <i class="pull-left ico-icon icon-md icon-primary">
+                                                <img src="./crypto-dash/s1.png" class="ico-icon-o" alt="">
+                                            </i>
+                                            <div class="stats">
+                                                <h3 class="boldy mb-5">$4,456.98</h3>
+                                                <span>Account Balance</span>
+                                            </div>
+                                        </div>
+                                        <span class="crypto1"><canvas width="239" height="60"></canvas></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="statistics-box">
+                                        <div class="mb-15">
+                                            <i class="pull-left ico-icon icon-md icon-primary">
+                                                <img src="./crypto-dash/s2.png" class="ico-icon-o" alt="">
+                                            </i>
+                                            <div class="stats">
+                                                <h3 class="boldy mb-5">$1,627.23</h3>
+                                                <span>Total Income</span>
+                                            </div>
+                                        </div>
+                                        <span class="crypto2"><canvas width="239" height="60"></canvas></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="statistics-box">
+                                        <div class="mb-15">
+                                            <i class="pull-left ico-icon icon-md icon-primary">
+                                                <img src="./crypto-dash/s3.png" class="ico-icon-o" alt="">
+                                            </i>
+                                            <div class="stats">
+                                                <h3 class="boldy mb-5">232.76%</h3>
+                                                <span>Rate of Return</span>
+                                            </div>
+                                        </div>
+                                        <span class="crypto3"><canvas width="239" height="60"></canvas></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-sm-6 col-xs-12">
+                                    <div class="statistics-box">
+                                        <div class="mb-15">
+                                            <i class="pull-left ico-icon icon-md icon-primary">
+                                                <img src="./crypto-dash/s4.png" class="ico-icon-o" alt="">
+                                            </i>
+                                            <div class="stats">
+                                                <h3 class="boldy mb-5">1,345</h3>
+                                                <span>Number of Trades</span>
+                                            </div>
+                                        </div>
+                                        <span class="crypto4"><canvas width="239" height="60"></canvas></span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- End .row -->
+                        </div>
+                    </section>
+                </div>
+
+                <div class="clearfix"></div>
+                <!-- MAIN CONTENT AREA STARTS -->
+
+                <div class='col-xs-12'>
+
+                    <div class="pull-left">
+                        <!-- PAGE HEADING TAG - START -->
+                        <h4 class="title boldy mb-5 mt-15">Crypto Balance</h4>
+                        <!-- PAGE HEADING TAG - END -->
+                    </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-lg-9 mt-15 mb-15">
+                    <section class="wra">
+                        <div class="swiper-container coins-slider text-center">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="coin-box flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin1.png" alt="">
+                                        </div>
+                                        <div class="coin-balance text-left">
+                                            <h5 class="coin-name boldy">Bitcoin Balance</h5>
+                                            <p class="mb-0">0.312373<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="coin-box flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin2.png" alt="">
+                                        </div>
+                                        <div class="coin-balance text-left">
+                                            <h5 class="coin-name boldy">Ethereum Balance</h5>
+                                            <p class="mb-0">1.007346<i class="cancelled fa fa-arrow-down ml-10"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="coin-box flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin3.png" alt="">
+                                        </div>
+                                        <div class="coin-balance text-left">
+                                            <h5 class="coin-name boldy">Dashcoin Balance</h5>
+                                            <p class="mb-0">0.008923<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="coin-box flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin4.png" alt="">
+                                        </div>
+                                        <div class="coin-balance text-left">
+                                            <h5 class="coin-name boldy">Ripple Balance</h5>
+                                            <p class="mb-0">210.3123<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="coin-box flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin5.png" alt="">
+                                        </div>
+                                        <div class="coin-balance text-left">
+                                            <h5 class="coin-name boldy">Bitcoincash</h5>
+                                            <p class="mb-0">2.092832<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="coin-box flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin6.png" alt="">
+                                        </div>
+                                        <div class="coin-balance text-left">
+                                            <h5 class="coin-name boldy">Dogecoin Balance</h5>
+                                            <p class="mb-0">877393,12<i class="cancelled fa fa-arrow-down ml-10"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="coin-box flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin7.png" alt="">
+                                        </div>
+                                        <div class="coin-balance text-left">
+                                            <h5 class="coin-name boldy">Monero Balance</h5>
+                                            <p class="mb-0">1.932845<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="apg-arrows">
+                            <!-- Add Navigation -->
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-lg-2 no-pl mt-15 mb-15">
+                    <button type="button" class="btn btn-primary gradient-blue" style="width:100%">
+                        <div><span class="add-plus fa fa-plus"></span> </div>Add More
+                    </button>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-lg-8">
+                    <section class="box" style="overflow:hidden">
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Crypto Balance Statistics</h2>
+                            <div class="actions panel_actions pull-right">
+                                <a class="box_toggle fa fa-chevron-down"></a>
+                                <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                <a class="box_close fa fa-times"></a>
+                            </div>
+                        </header>
+                        <div class="content-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div id="crypto-chart">
+                                        <div id="demoarea-container" style="width: 100%;height:380px; text-align: center; margin:0 auto;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-xs-12 col-md-6 col-lg-4">
+                    <section class="box ">
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Stock Status</h2>
+                            <div class="actions panel_actions pull-right">
+                                <a class="box_toggle fa fa-chevron-down"></a>
+                                <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                <a class="box_close fa fa-times"></a>
+                            </div>
+                        </header>
+                        <div class="content-body">    
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="coin-box2 flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin1.png" alt="">
+                                        </div>
+                                        
+                                        <h5 class="coin-name boldy">Bitcoin</h5>
+                                        <h5 class="coin-price boldy">$8.958</h5>
+                                        <p class="mb-0 green-text">4.98%<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                    </div>
+                                    <div class="coin-box2 flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin2.png" alt="">
+                                        </div>
+                                        
+                                        <h5 class="coin-name boldy">Ethereum</h5>
+                                        <h5 class="coin-price boldy">$1.958</h5>
+                                        <p class="mb-0 red-text">3.45%<i class="cancelled fa fa-arrow-down ml-10"></i></p>
+                                    </div>
+                                    <div class="coin-box2 flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin3.png" alt="">
+                                        </div>
+                                        
+                                        <h5 class="coin-name boldy">Dashcoin</h5>
+                                        <h5 class="coin-price boldy">$838,45</h5>
+                                        <p class="mb-0 green-text">3.45%<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                    </div>
+                                    <div class="coin-box2 flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin8.png" alt="">
+                                        </div>
+                                        
+                                        <h5 class="coin-name boldy">Litecoin</h5>
+                                        <h5 class="coin-price boldy">$308,09</h5>
+                                        <p class="mb-0 red-text">2.05%<i class="cancelled fa fa-arrow-down ml-10"></i></p>
+                                    </div>
+                                    <div class="coin-box2 flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin6.png" alt="">
+                                        </div>
+                                        
+                                        <h5 class="coin-name boldy">Dogecoin</h5>
+                                        <h5 class="coin-price boldy">$0.0846</h5>
+                                        <p class="mb-0 green-text">2.05%<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                    </div>
+                                    <div class="coin-box2 mb-0 flex align-items-center">
+                                        <div class="coin-icon mr-10">
+                                            <img src="./crypto-dash/coin7.png" alt="">
+                                        </div>
+                                        
+                                        <h5 class="coin-name boldy">Monero</h5>
+                                        <h5 class="coin-price boldy">$475.048</h5>
+                                        <p class="mb-0 green-text">2.05%<i class="complete fa fa-arrow-up ml-10"></i></p>
+                                    </div>
+                                    
+
+                                </div>      
+                            </div> <!-- End .row -->
+                        </div>
+                    </section>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-xs-12 col-md-4">
+                    <section class="box ">
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Transactions Status</h2>
+                            <div class="actions panel_actions pull-right">
+                                <a class="box_toggle fa fa-chevron-down"></a>
+                                <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                <a class="box_close fa fa-times"></a>
+                            </div>
+                        </header>
+                        <div class="content-body pb10">
+                            <div class="row">
+                                <div class="col-xs-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2 mb-20">
+                                    <canvas id="donut-chartjs" width="400" height="400"></canvas>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="token-info">
+                                        <div class="info-wrapper three">
+                                            <div class="token-descr">
+                                                <h3 class="bold mt-0 mb-0">44%</h3>
+                                                Completed
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="token-info">
+                                        <div class="info-wrapper five">
+                                            <div class="token-descr">
+                                                <h3 class="bold mt-0 mb-0">34%</h3>
+                                                Pending
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="token-info">
+                                        <div class="info-wrapper two">
+                                            <div class="token-descr">
+                                                <h3 class="bold mt-0 mb-0">22%</h3>
+                                                Cancelled
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6 col-xs-12">
+                                    <div class="token-info">
+                                        <div class="info-wrapper default">
+                                            <div class="token-descr">
+                                                <h3 class="bold mt-0 mb-0">14%</h3>
+                                                Others
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="r1_graph1 db_box db_box_large has-shadow2 mt-15">
+                                <div class="pat-info-wrapper">
+                                    <div class="pat-info text-left">
+                                        <h5 class=''>Total Funds</h5>
+                                        <h6>Complete transactions</h6>
+                                    </div>
+                                    <div class="pat-val relative">
+                                        <h4 class="value blue-text"><i class="complete fa fa-arrow-up"></i>124%<span>increase By</span></h4>
+                                    </div>
+                                </div>
+                                <span class="sparkline15">Loading...</span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-xs-12">
+                            <div class="r1_graph1 db_box db_box_large has-shadow2 mt-15">
+                                <div class="promp-box text-center">
+                                    <img src="./crypto-dash/crypto-wallet.png" alt="">
+                                    <h4 class="boldy mt-20 mb-10">Start crypto trading Today</h4>
+                                    <p>Lorem ipsum dolor sit amet, Eveniet magni sit explicabo Quo nihil atque.</p>
+                                    <div class="form-group no-mb">
+                                        <a href="crypto-trading.html" class="btn btn-primary btn-lg mt-20 gradient-blue" style="width:100%"> Start Trading</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="ask-box active">
+                                <div class="ask-circle">
+                                  <img src="./crypto-dash/crypto-buy.png" alt="">
+                                </div>
+                                <div class="ask-info">
+                                  <h3 class="w-text bold">Buy & Sell Crypto Directly and Easily</h3>
+                                  <p class="g2-text mb-0">lorem ipsum dolor sit elit. Perferendis veniam exercitationem ducimus  magni distinctio sit explicabo.</p>
+                                </div>
+                                <div class="ask-arrow">
+                                  <a href="crypto-buy-sell.html"><span class="fa fa-angle-right"></span></a>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="col-lg-6">
+                    <section class="box">
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Recent Activities</h2>
+                            <div class="actions panel_actions pull-right">
+                                <a class="box_toggle fa fa-chevron-down"></a>
+                                <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                <a class="box_close fa fa-times"></a>
+                            </div>
+                        </header>
+                        <div class="content-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="table-responsive" data-pattern="priority-columns">
+                                        <table id="tech-companies-1" class="table vm table-small-font no-mb table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Crypto Orders</th>
+                                                    <th>Status</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/p1.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Buy Record</h6>
+                                                            <small class="text-muted"><span class="mr-10">11-26</span> 10:23:45</small>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="badge  w-70 round-success">completed</span></td>
+                                                    <td class="green-text boldy">+3,800$</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/p2.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Sell Record</h6>
+                                                            <small class="text-muted"><span class="mr-10">11-25</span> 12:53:25</small>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="badge w-70 round-warning">Pending</span></td>
+                                                    <td class="red-text boldy">-1,760$</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/p3.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Exchange Record</h6>
+                                                            <small class="text-muted"><span class="mr-10">11-24</span> 04:03:25</small>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="badge w-70 round-primary">exchanged </span></td>
+                                                    <td class="blue-text boldy">+20,760$</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/p1.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Buy Record</h6>
+                                                            <small class="text-muted"><span class="mr-10">11-22</span> 09:33:02</small>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="badge w-70 round-danger">Canceled</span></td>
+                                                    <td class="green-text boldy">+10,760$</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/p2.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Buy Record</h6>
+                                                            <small class="text-muted"><span class="mr-10">11-22</span> 09:33:02</small>
+                                                        </div>
+                                                    </td>
+                                                    <td><span class="badge w-70 round-success">Completed</span></td>
+                                                    <td class="red-text boldy">-8,760$</td>
+                                                </tr>
+                                                
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                </div>
+
+                <div class="col-lg-6">
+                    <section class="box">
+                        <header class="panel_header">
+                            <h2 class="title pull-left">Transactions History</h2>
+                            <div class="actions panel_actions pull-right">
+                                <a class="box_toggle fa fa-chevron-down"></a>
+                                <a class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></a>
+                                <a class="box_close fa fa-times"></a>
+                            </div>
+                        </header>
+                        <div class="content-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+
+                                    <div class="table-responsive" data-pattern="priority-columns">
+                                        <table id="tech-companies-1" class="table vm trans table-small-font no-mb table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Crypto Trade</th>
+                                                    <th>Time</th>
+                                                    <th>Status</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/coin1.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Bitcoin</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td><small class="text-muted">10:23:45</small></td>
+                                                    <td><span class="badge  w-70 round-success">completed</span></td>
+                                                    <td class="green-text boldy">+0,041BTC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/coin8.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Litecoin</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td><small class="text-muted">12:53:25</small></td>
+                                                    <td><span class="badge w-70 round-warning">Pending</span></td>
+                                                    <td class="red-text boldy">-1,176LTC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/coin2.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Ethereum</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td><small class="text-muted">04:03:25</small></td>
+                                                    <td><span class="badge w-70 round-primary">exchanged </span></td>
+                                                    <td class="blue-text boldy">0.023ETH</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/coin4.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Ripple</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td><small class="text-muted"> 09:33:02</small></td>
+                                                    <td><span class="badge w-70 round-danger">Canceled</span></td>
+                                                    <td class="green-text boldy">+107,0XRP</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/coin1.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Bitcoin</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td><small class="text-muted">10:23:45</small></td>
+                                                    <td><span class="badge  w-70 round-warning">pending</span></td>
+                                                    <td class="green-text boldy">-0,098BTC</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/coin3.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Dashcoin</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td><small class="text-muted">09:33:02</small></td>
+                                                    <td><span class="badge w-70 round-success">Completed</span></td>
+                                                    <td class="red-text boldy">-2,76DAH</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="round img2">
+                                                            <img src="./crypto-dash/coin5.png" alt="">
+                                                        </div>
+                                                        <div class="designer-info">
+                                                            <h6>Bitdash</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td><small class="text-muted">09:33:02</small></td>
+                                                    <td><span class="badge w-70 round-success">Completed</span></td>
+                                                    <td class="green-text boldy">+1,429DAH</td>
+                                                </tr>
+                                                
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                </div>
+
+
+            
+                <div class="clearfix"></div>
+
+                <!-- MAIN CONTENT AREA ENDS -->
+            </div>
+        </section>
+        <!-- END CONTENT -->
+        <div class="page-chatapi hideit">
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search" class="form-control">
+            </div>
+
+            <div class="chat-wrapper">
+
+                <h4 class="group-head">Favourites</h4>
+                <ul class="contact-list">
+
+                    <li class="user-row " id='chat_user_1' data-user-id='1'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-1.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Joge Lucky</a></h4>
+                            <span class="status available" data-status="available"> Available</span>
+                        </div>
+                        <div class="user-status available">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_2' data-user-id='2'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-2.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Folisise Chosiel</a></h4>
+                            <span class="status away" data-status="away"> Away</span>
+                        </div>
+                        <div class="user-status away">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_3' data-user-id='3'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-3.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Aron Gonzalez</a></h4>
+                            <span class="status busy" data-status="busy"> Busy</span>
+                        </div>
+                        <div class="user-status busy">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <h4 class="group-head">More Contacts</h4>
+                <ul class="contact-list">
+
+                    <li class="user-row " id='chat_user_4' data-user-id='4'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-4.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Chris Fox</a></h4>
+                            <span class="status offline" data-status="offline"> Offline</span>
+                        </div>
+                        <div class="user-status offline">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_5' data-user-id='5'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-5.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Mogen Polish</a></h4>
+                            <span class="status offline" data-status="offline"> Offline</span>
+                        </div>
+                        <div class="user-status offline">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_6' data-user-id='6'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-1.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Smith Carter</a></h4>
+                            <span class="status available" data-status="available"> Available</span>
+                        </div>
+                        <div class="user-status available">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_7' data-user-id='7'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-2.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Amilia Gozenal</a></h4>
+                            <span class="status busy" data-status="busy"> Busy</span>
+                        </div>
+                        <div class="user-status busy">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_8' data-user-id='8'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-3.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Tahir Jemyship</a></h4>
+                            <span class="status away" data-status="away"> Away</span>
+                        </div>
+                        <div class="user-status away">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_9' data-user-id='9'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-4.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Johanson Wright</a></h4>
+                            <span class="status busy" data-status="busy"> Busy</span>
+                        </div>
+                        <div class="user-status busy">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_10' data-user-id='10'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-5.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Loni Tindall</a></h4>
+                            <span class="status away" data-status="away"> Away</span>
+                        </div>
+                        <div class="user-status away">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_11' data-user-id='11'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-1.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Natcho Herlaey</a></h4>
+                            <span class="status idle" data-status="idle"> Idle</span>
+                        </div>
+                        <div class="user-status idle">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+                    <li class="user-row " id='chat_user_12' data-user-id='12'>
+                        <div class="user-img">
+                            <a href="#"><img src="./profile/avatar-2.png" alt=""></a>
+                        </div>
+                        <div class="user-info">
+                            <h4><a href="#">Shakira Swedan</a></h4>
+                            <span class="status idle" data-status="idle"> Idle</span>
+                        </div>
+                        <div class="user-status idle">
+                            <i class="fa fa-circle"></i>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="chatapi-windows ">
+
+        </div>
+    </div>
+    <!-- END CONTAINER -->
+</main>
+
+
+<footer>
+    <% include ../partials/footer2 %>
+</footer>
+
+</body>
+</html>

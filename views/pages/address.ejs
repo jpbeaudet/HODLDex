@@ -1,0 +1,70 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head2 %>
+</head>
+<body class=" ">
+
+<header>
+    <% include ../partials/header2 %>
+</header>
+
+<main>
+
+<!-- START CONTENT -->
+
+	<section id="main-content" class=" ">
+	<div class="wrapper main-wrapper row" style=''>
+<!-- Metamask Warning (if metamask is not installed) start -->
+	<% include ../partials/metamask_warning %>
+<!-- Subheader end -->
+  <div class='col-xs-12'>
+   <div class="page-title">
+
+     <div class="pull-left">
+     <!-- PAGE HEADING TAG - START -->
+     <h1 class="title">Address: <%= address%></h1>
+     <!-- PAGE HEADING TAG - END -->
+     </div>
+
+     </div>
+     </div>
+<!-- HODL Explorer searchbar start -->
+	<div class="col-xs-12">
+	<h4 class="title boldy mb-5 mt-15">HODL Explorer Searchbar</h4>
+	<label class="form-label" for="searchbar"></label>
+	<div class="controls">
+		<input type="text" class="form-control input-lg" id="searchbar" placeholder="Enter ethereum address, txhash">
+	</div>
+ <br>  
+</div>
+<!-- Subheader start -->
+	<% include ../partials/addressBalance %>
+<!-- Subheader end -->
+
+<div class="clearfix"></div>
+
+</div>
+
+<div class="clearfix"></div>
+ <!-- Market bid&ask partial start -->
+	<% include ../partials/txhistory %>
+<!-- Market bid&ask partial-->                
+
+ <!-- MAIN CONTENT AREA ENDS -->
+</div>
+</section>
+<!-- END CONTENT -->
+
+</div>
+<!-- END CONTAINER -->
+</main>
+
+<footer>
+    <% include ../partials/footer2 %>
+</footer>
+
+</body>
+</html>
