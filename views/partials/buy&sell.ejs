@@ -1,14 +1,15 @@
 <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <div class="ask-box v2 active mt-15">
+
                         <div class="ask-circle">
                           <img src="../crypto-dash/crypto-buy.png" alt="">
                         </div>
                         <div class="ask-info">
                           <h3 class="w-text boldy mt-15">Buy HODL</h3>
-                          <p class="g2-text mb-0">lorem dolor sit elit.</p>
+                          <p class="g2-text mb-0">BUY HODL Commodity token with Ether</p>
                         </div>
-                        <div class="ask-arrow">
-                          <a href=""><span class="fa fa-angle-right"></span></a>
+                        <div class="ask-arrow">                 
+                          <a href="#myModal" data-toggle="modal"><span class="fa fa-angle-right"></span></a>
                         </div>
                      </div>
                 </div>
@@ -19,10 +20,10 @@
                         </div>
                         <div class="ask-info">
                           <h3 class="w-text boldy mt-15">Sell HODL</h3>
-                          <p class="g2-text mb-0">lorem dolor sit elit.</p>
+                          <p class="g2-text mb-0">Sell HODL Commodity token for Ether</p>
                         </div>
                         <div class="ask-arrow">
-                          <a href=""><span class="fa fa-angle-right"></span></a>
+                          <a href="#myModalSell" data-toggle="modal"><span class="fa fa-angle-right"></span></a>
                         </div>
                      </div>
                 </div>
@@ -33,11 +34,488 @@
                         </div>
                         <div class="ask-info">
                           <h3 class="w-text boldy mt-15">Manage Pool</h3>
-                          <p class="g2-text mb-0">lorem dolor sit elit.</p>
+                          <p class="g2-text mb-0">Sell, withdraw HODL or withdraw Ether earning</p>
                         </div>
                         <div class="ask-arrow">
-                          <a href=""><span class="fa fa-angle-right"></span></a>
+                          <a href="#myModalPool" data-toggle="modal"><span class="fa fa-angle-right"></span></a>
                         </div>
                      </div>
                 </div>
+     
+     
+      <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                        <h4 class="modal-title">Buy HODL</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                            <!-- <div class="tabs-vertical-env"> -->
+                                            <h4>Choose a buying option:</h4>
+                                            <div class="row tabs-area">
+                                                <ul class="nav nav-tabs vertical col-xs-4 col-md-4 left-aligned primary">
+                                                    <li class="active">
+                                                        <a href="#home-5" data-toggle="tab">
+                                                            <i class="fa fa-home"></i> Buy
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#profile-5" data-toggle="tab">
+                                                            <i class="fa fa-user"></i> Buy From Reserve
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#messages-5" data-toggle="tab">
+                                                            <i class="fa fa-envelope"></i> Buy From Address
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#settings-5" data-toggle="tab">
+                                                            <i class="fa fa-cog"></i> Buy From Ask
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#settings-5" data-toggle="tab">
+                                                            <i class="fa fa-cog"></i> Withdraw Remainder Ethereum from Contract
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                                <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
+                                                    <div class="tab-pane fade in active" id="home-5">
+
+														<form>
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Amount</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter Desired Amount">
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+																	<span class="help-block">Wei needed: 7777</span>
+																	<span class="help-block"><small>This will launch a trade order, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-block btn-primary">Buy</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="profile-5">
+
+														<form>
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Amount</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter Desired Amount">
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+																	<span class="help-block">Wei needed: 7777</span>
+																	<span class="help-block"><small>This will launch a trade order from the reserve and will be resolved automatically. The Ethereum sent will be redistributed randomly to a current HODL owner, including you.</small></span>
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-block btn-primary">Buy From Reserve</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="messages-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="settings-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- </div>  -->
+
+                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+
+    <div aria-hidden="true" role="dialog" tabindex="-1" id="myModalSell" class="modal fade" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                        <h4 class="modal-title">Sell HODL</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                            <!-- <div class="tabs-vertical-env"> -->
+                                            <h4>Choose a sell option:</h4>
+                                            <div class="row tabs-area">
+                                                <ul class="nav nav-tabs vertical col-xs-4 col-md-4 left-aligned primary">
+                                                    <li class="active">
+                                                        <a href="#home-5" data-toggle="tab">
+                                                            <i class="fa fa-home"></i> Sell
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#settings-5" data-toggle="tab">
+                                                            <i class="fa fa-cog"></i> Sell To Bid
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                                <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
+                                                    <div class="tab-pane fade in active" id="home-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="profile-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="messages-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="settings-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- </div>  -->
+
+                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+
+
+
+   <div aria-hidden="true" role="dialog" tabindex="-1" id="myModalPool" class="modal fade" style="display: none;">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                        <h4 class="modal-title">Manage HODL Trading Pool</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                            <!-- <div class="tabs-vertical-env"> -->
+                                            <h4>Choose an option:</h4>
+                                            <div class="row tabs-area">
+                                                <ul class="nav nav-tabs vertical col-xs-4 col-md-4 left-aligned primary">
+                                                    <li class="active">
+                                                        <a href="#home-5" data-toggle="tab">
+                                                            <i class="fa fa-home"></i> Sell to Pool
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#settings-5" data-toggle="tab">
+                                                            <i class="fa fa-cog"></i> Withdraw HODL from Pool
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#settings-5" data-toggle="tab">
+                                                            <i class="fa fa-cog"></i> Withdraw Earnings from Pool
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#settings-5" data-toggle="tab">
+                                                            <i class="fa fa-cog"></i> Withdraw Remainder Ethereum from Contract
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                                <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
+                                                    <div class="tab-pane fade in active" id="home-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="profile-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="messages-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="settings-5">
+
+														<form>
+
+                                                            <div class="form-group">
+                                                                <label for="modalname1" class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalemail1" class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalpw1" class="form-label">Password</label>
+                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modalfile3" class="form-label">File input</label>
+                                                                <input type="file" id="modalfile3">
+                                                                <span class="help-block">Example block-level help text here.</span>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- </div>  -->
+
+                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
 
