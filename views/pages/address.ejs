@@ -14,22 +14,15 @@
 <main>
 
 <!-- START CONTENT -->
-
+	
 	<section id="main-content" class=" ">
 	<div class="wrapper main-wrapper row" style=''>
+
 <!-- Metamask Warning (if metamask is not installed) start -->
 	<% include ../partials/metamask_warning %>
 <!-- Subheader end -->
   <div class='col-xs-12'>
-   <div class="page-title">
-
-     <div class="pull-left">
-     <!-- PAGE HEADING TAG - START -->
-     <h1 class="title">Address: <%= address%></h1>
-     <!-- PAGE HEADING TAG - END -->
-     </div>
-
-     </div>
+	<h1 class="title boldy mb-5 mt-15">Address Details: <%= address%></h1>
      </div>
 <!-- HODL Explorer searchbar start -->
 	<div class="col-xs-12">
@@ -40,10 +33,11 @@
 	</div>
  <br>  
 </div>
+
+
 <!-- Subheader start -->
 	<% include ../partials/addressBalance %>
 <!-- Subheader end -->
-
 <div class="clearfix"></div>
 
 </div>

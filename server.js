@@ -47,9 +47,15 @@ app.get('/address/:address', function(req, res) {
     res.render('pages/address', data);
 });
 
-// trading 
+// trade 
 app.get('/trade', function(req, res) {
-    res.render('pages/trade');
+    res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");
+});
+
+// load trading platform for address
+app.get('/dex/:address', function(req, res) {
+	var data = {address: req.params.address}
+    res.render('pages/trade',data);
 });
 
 //  support 
