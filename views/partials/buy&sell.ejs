@@ -52,43 +52,44 @@
                                                     </div>
                                                     <div class="modal-body">
                                             <!-- <div class="tabs-vertical-env"> -->
-                                            <h4>Choose a buying option:</h4>
+                                            <h4>Choose a buying option: <br>
+                                            <small>NOTE: All transaction here will need to be confirmed or rejected within your metamask account before being send to Ethereum blockchain.</small></h4>
                                             <div class="row tabs-area">
                                                 <ul class="nav nav-tabs vertical col-xs-4 col-md-4 left-aligned primary">
                                                     <li class="active">
-                                                        <a href="#home-5" data-toggle="tab">
-                                                            <i class="fa fa-home"></i> Buy
+                                                        <a href="#buy1" data-toggle="tab">
+                                                            <i class="fa fa-shopping-cart"></i> Buy
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#profile-5" data-toggle="tab">
-                                                            <i class="fa fa-user"></i> Buy From Reserve
+                                                        <a href="#buy2" data-toggle="tab">
+                                                            <i class="fa fa-shopping-cart"></i> Buy From Reserve
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#messages-5" data-toggle="tab">
-                                                            <i class="fa fa-envelope"></i> Buy From Address
+                                                        <a href="#buy3" data-toggle="tab">
+                                                            <i class="fa fa-shopping-cart"></i> Buy From Address
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#settings-5" data-toggle="tab">
-                                                            <i class="fa fa-cog"></i> Buy From Ask
+                                                        <a href="#buy4" data-toggle="tab">
+                                                            <i class="fa fa-shopping-cart"></i> Buy From Ask
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#settings-5" data-toggle="tab">
-                                                            <i class="fa fa-cog"></i> Withdraw Remainder Ethereum from Contract
+                                                        <a href="#buy5" data-toggle="tab">
+                                                            <i class="fa fa-user"></i>Withdraw Remainder Ethereum from Contract
                                                         </a>
                                                     </li>
                                                 </ul>
 
                                                 <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
-                                                    <div class="tab-pane fade in active" id="home-5">
+                                                    <div class="tab-pane fade in active" id="buy1">
 
 														<form>
                                                             <div class="form-group">
-                                                                <label for="modalname1" class="form-label">Amount</label>
-                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter Desired Amount">
+                                                                <label for="amount" class="form-label">Amount</label>
+                                                                <input type="number" class="form-control" id="amount" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -99,12 +100,12 @@
                                                             <button type="submit" class="btn btn-block btn-primary">Buy</button>
                                                         </form>
                                                     </div>
-                                                    <div class="tab-pane fade" id="profile-5">
+                                                    <div class="tab-pane fade" id="buy2">
 
 														<form>
                                                             <div class="form-group">
-                                                                <label for="modalname1" class="form-label">Amount</label>
-                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter Desired Amount">
+                                                                <label for="amount" class="form-label">Amount</label>
+                                                                <input type="number" class="form-control" id="amount" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -115,63 +116,57 @@
                                                             <button type="submit" class="btn btn-block btn-primary">Buy From Reserve</button>
                                                         </form>
                                                     </div>
-                                                    <div class="tab-pane fade" id="messages-5">
-
+                                                    <div class="tab-pane fade" id="buy3">
 														<form>
-
                                                             <div class="form-group">
-                                                                <label for="modalname1" class="form-label">Full Name</label>
-                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modalemail1" class="form-label">Email address</label>
-                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modalpw1" class="form-label">Password</label>
-                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modalfile3" class="form-label">File input</label>
-                                                                <input type="file" id="modalfile3">
-                                                                <span class="help-block">Example block-level help text here.</span>
+                                                                <label for="amount" class="form-label">Amount</label>
+                                                                <input type="number" class="form-control" id="amount" placeholder="Enter Desired Amount">
+                                                                <label for="address" class="form-label">Address</label>
+                                                                <input type="text" class="form-control" id="address" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+																	<span class="help-block">Wei needed: 7777</span>
+																	<span class="help-block"><small> This will launch a buy order to a specific address. The address must have approved the transaction amount and your address or this will fail. </small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                            <button type="submit" class="btn btn-block btn-primary">Buy From Address </button>
                                                         </form>
                                                     </div>
 
-                                                    <div class="tab-pane fade" id="settings-5">
+                                                    <div class="tab-pane fade" id="buy4">
 
 														<form>
-
                                                             <div class="form-group">
-                                                                <label for="modalname1" class="form-label">Full Name</label>
-                                                                <input type="text" class="form-control" id="modalname1" placeholder="Enter name">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modalemail1" class="form-label">Email address</label>
-                                                                <input type="email" class="form-control" id="modalemail1" placeholder="Enter email">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modalpw1" class="form-label">Password</label>
-                                                                <input type="password" class="form-control" id="modalpw1" placeholder="Password">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="modalfile3" class="form-label">File input</label>
-                                                                <input type="file" id="modalfile3">
-                                                                <span class="help-block">Example block-level help text here.</span>
+                                                                <label for="amount" class="form-label">Amount</label>
+                                                                <input type="number" class="form-control" id="amount" placeholder="Enter Desired Amount">
+                                                                <label for="address" class="form-label">Address</label>
+                                                                <input type="text" class="form-control" id="address" placeholder="Enter Ask Address" pattern="/^(0x)?[0-9a-f]{40}$/">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-                                                                    <div class="icheckbox_minimal" style="position: relative;"><input type="checkbox" class="iCheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div> Check me out
+																	<span class="help-block">Wei needed: 7777</span>
+																	<span class="help-block"><small> This will launch a buy order to a specific address associated with an ask. If the amount of Ether sent is lower or equal the ask with be bougth </small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                            <button type="submit" class="btn btn-block btn-primary">Buy From Ask </button>
+                                                        </form>
+                                                    </div>
+                                                    
+                                                    <div class="tab-pane fade" id="buy5">
+
+														<form>
+                                                            <div class="form-group">
+                                                                <label for="address" class="form-label">Address</label>
+                                                                <input type="text" class="form-control" id="address" placeholder="Enter Address" pattern="/^(0x)?[0-9a-f]{40}$/">
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+																	<span class="help-block">Remainder Balance: 0.000000007777</span>
+																	<span class="help-block"><small> This will trigger a withdraw from any remainder Ethereum you have in the smart contract as dust from a previous transaction. </small></span>
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-block btn-primary">Withdraw Remainder Ethereum </button>
                                                         </form>
                                                     </div>
                                                 </div>

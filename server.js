@@ -32,18 +32,19 @@ app.use(express.static(path.join(__dirname, 'data')));
 
 // index page 
 app.get('/', function(req, res) {
-    res.render('pages/index');
+	var data = {title: "HODL Explorer"}
+    res.render('pages/index', data);
 });
 
 // explorer tx page 
 app.get('/tx/:txid', function(req, res) {
-	var data = {txid: req.params.txid}
+	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details"}
     res.render('pages/tx', data);
 });
 
 // explorer addresses page 
 app.get('/address/:address', function(req, res) {
-	var data = {address: req.params.address}
+	var data = {address: req.params.address, title: "HODL Explorer | Address Details"}
     res.render('pages/address', data);
 });
 
@@ -54,13 +55,14 @@ app.get('/trade', function(req, res) {
 
 // load trading platform for address
 app.get('/dex/:address', function(req, res) {
-	var data = {address: req.params.address}
-    res.render('pages/trade',data);
+	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell"}
+    res.render('pages/trade', data);
 });
 
 //  support 
 app.get('/support', function(req, res) {
-    res.render('pages/support');
+	var data = {title: "HODL Support & Contribute"}
+    res.render('pages/support', data);
 });
 
 //start server
