@@ -33,7 +33,10 @@ app.use(express.static(path.join(__dirname, 'data')));
 // index page 
 app.get('/', function(req, res) {
 	var data = {title: "HODL Explorer"}
-    res.render('pages/index', data);
+	hodl.public(function(results){
+		console.log(JSON.stringify(results))
+		res.render('pages/index', data);
+	})   
 });
 
 // explorer tx page 
