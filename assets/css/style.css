@@ -132,6 +132,7 @@ body.boxed .page-topbar {
     width: 90%;
     margin-left: 5% !important;
 }
+
 #loader {
   position: absolute;
   left: 50%;

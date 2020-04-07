@@ -35,7 +35,16 @@ var address = "0x34642A469e096138531E6396C50D2d416d0B47D7"
 // Create a proxy object to access the smart contract
 var MyContract = new web3.eth.Contract(abiArray);
 MyContract.options.address = address
-	
+function commafy( num ) {
+    var str = num.toString().split('.');
+    if (str[0].length >= 5) {
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    if (str[1] && str[1].length >= 5) {
+        str[1] = str[1].replace(/(\d{3})/g, '$1');
+    }
+    return str.join('.');
+}	
 module.exports = {
     public: function(cb){
 		let promise = new Promise((resolve, reject) => {
@@ -49,13 +58,13 @@ module.exports = {
 				return ("Err:"+error)
 			}
 			results.totalSupply = result
-
+			results.totalSupplyComma = commafy(result/(10**10))
 			//end of total supply
 			MyContract.methods.reserveBalance().call( async(error, result)=>{	
 				if(error){
 					return ("Err:"+error)
 				}
-				results.reserveBalance =  result				
+				results.reserveBalance = commafy( (result / (10**10)).toFixed(10)	)			
 		
 			})
 			//end of reserveBalance
@@ -99,15 +108,17 @@ module.exports = {
 									if(error){
 										return ("Err:"+error)
 									}
-									results.currentPriceUSDCent = result				
-		
+									results.currentPriceUSDCent = result/10000				
+									results.priceIncreasePerCent = ((result/100) / 0.01)*100
+									results.marketcap = commafy( ((results.totalSupply/(10**10))* results.currentPriceUSDCent).toFixed(2))
 								})
 								//end of currentPriceUSDCent
 									MyContract.methods.getPriceOf(1).call( async(error, result)=>{	
 										if(error){
 											return ("Err:"+error)
 										}
-										results.getPriceOf = result				
+										results.getPriceOf = (result	/ (10**8)).toFixed(9)
+										results.getPriceOfWei = (result	* (10**10))
 									})
 									//end of getCurrentUSDCent
 									.then(async()=>{

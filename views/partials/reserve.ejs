@@ -1,53 +1,51 @@
                 <div class="col-lg-12">
-                <h4 class="title boldy mb-5 mt-15">HODL Reserve & Marketcap</h4>
+
                     <section class="box nobox marginBottom0">
                         <div class="content-body">
                             <div class="row">
                                
-                                <div class="col-lg-4 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-sm-6 col-xs-12">
                                     <div class="statistics-box">
                                         <div class="mb-15">
-                                            <i class="pull-left ico-icon icon-md icon-primary">
-                                                <img src="../crypto-dash/s1.png" class="ico-icon-o" alt="">
-                                            </i>
-                                            <div class="stats">
-                                                <h3 class="boldy mb-5">19,888,999 <small>HODL</small></h3>
+
+                                         
+                                                <h3 class="boldy mb-5"><%= public.reserveBalance %> <small>HODL</small></h3>
                                                 <span>Reserve Balance</span>
-                                            </div>
+                                        
                                         </div>
-                                       <span class="crypto1"><canvas width="239" height="60"></canvas></span>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-sm-6 col-xs-12">
                                     <div class="statistics-box">
                                         <div class="mb-15">
-                                            <i class="pull-left ico-icon icon-md icon-primary">
-                                                <img src="../crypto-dash/s2.png" class="ico-icon-o" alt="">
-                                            </i>
-                                            <div class="stats">
-                                                <h3 class="boldy mb-5">6</h3>
-                                                <span># of Trades</span>
-                                            </div>
+
+                                                <h3 class="boldy mb-5">$ <%= public.marketcap %><small> USD</small></h3>
+                                                <span>Marketcap </span><br>
+
                                         </div>
-                                        <span class="crypto2"><canvas width="239" height="60"></canvas></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-xs-12">
+                                    <div class="statistics-box">
+                                        <div class="mb-15">
+
+                                                <h3 class="boldy mb-5"><%= public.txnb %></h3>
+                                                <span># of Trades</span>
+
+                                        </div>
 
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-sm-6 col-xs-12">
+                                 <div class="col-lg-6 col-sm-6 col-xs-12">
                                     <div class="statistics-box">
                                         <div class="mb-15">
-                                            <i class="pull-left ico-icon icon-md icon-primary">
-                                                <img src="../crypto-dash/s3.png" class="ico-icon-o" alt="">
-                                            </i>
-                                            <div class="stats">
-                                                <h3 class="boldy mb-5">$1,200,000 <small>USD</small></h3>
-                                                <span>Marketcap</span>
-                                            </div>
+
+                                                <h3 class="boldy mb-5"> <%= public.totalSupplyComma %><small> HODL</small></h3>
+                                                <span>Total Supply</span>
+
                                         </div>
-                                        <span class="crypto3"><canvas width="239" height="60"></canvas></span>
                                     </div>
-                                </div>
-                                
+                                </div>                               
                             
                             </div>
                             <div class="clearfix"></div>

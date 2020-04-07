@@ -35,6 +35,7 @@ app.get('/', function(req, res) {
 	var data = {title: "HODL Explorer"}
 	hodl.public(function(results){
 		console.log(JSON.stringify(results))
+		data.public = results
 		res.render('pages/index', data);
 	})   
 });
