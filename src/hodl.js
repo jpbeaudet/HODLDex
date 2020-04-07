@@ -91,7 +91,8 @@ module.exports = {
 							results.getAsks ={}
 							results.getAsks.address =  result["0"]	
 							results.getAsks.amount=  result["1"]			
-		
+							//results.getAsks.address = ["0xbfhfgr665h5h55"]	
+							//results.getAsks.amount= [1234]			
 						})
 						//end of getAsks
 							MyContract.methods.getBids().call( async(error, result)=>{	
@@ -101,7 +102,7 @@ module.exports = {
 								results.getBids ={}
 								results.getBids.address = result["0"]	
 								results.getBids.amount= result["1"]			
-		
+	
 							})
 							//end of getBids
 								MyContract.methods.currentPriceUSDCent().call( async(error, result)=>{	
