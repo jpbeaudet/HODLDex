@@ -48,16 +48,14 @@ module.exports = {
 			if(error){
 				return ("Err:"+error)
 			}
-				console.log(result)
-				results.totalSupply = result
+			results.totalSupply = result
 
 			//end of total supply
 			MyContract.methods.reserveBalance().call( async(error, result)=>{	
 				if(error){
 					return ("Err:"+error)
 				}
-					console.log(result)
-					results.reserveBalance =  result				
+				results.reserveBalance =  result				
 		
 			})
 			//end of reserveBalance
@@ -65,8 +63,7 @@ module.exports = {
 					if(error){
 						return ("Err:"+error)
 					}
-						console.log(result)
-						results.getContractAddress =  result				
+					results.getContractAddress =  result				
 		
 				})
 				//end of getContractAddress
@@ -74,8 +71,7 @@ module.exports = {
 						if(error){
 							return ("Err:"+error)
 						}
-							console.log(result)
-							results.txnb =  result				
+						results.txnb =  result				
 	
 					})
 					//end of txnb
@@ -83,10 +79,9 @@ module.exports = {
 							if(error){
 								return ("Err:"+error)
 							}
-								console.log(result)
-								results.getAsks ={}
-								results.getAsks.address =  result["0"]	
-								results.getAsks.amount=  result["1"]			
+							results.getAsks ={}
+							results.getAsks.address =  result["0"]	
+							results.getAsks.amount=  result["1"]			
 		
 						})
 						//end of getAsks
@@ -94,10 +89,9 @@ module.exports = {
 								if(error){
 									return ("Err:"+error)
 								}
-									console.log(result)
-									results.getBids ={}
-									results.getBids.address = result["0"]	
-									results.getBids.amount= result["1"]			
+								results.getBids ={}
+								results.getBids.address = result["0"]	
+								results.getBids.amount= result["1"]			
 		
 							})
 							//end of getBids
@@ -105,8 +99,7 @@ module.exports = {
 									if(error){
 										return ("Err:"+error)
 									}
-										console.log(result)
-										results.currentPriceUSDCent = result				
+									results.currentPriceUSDCent = result				
 		
 								})
 								//end of currentPriceUSDCent
@@ -114,41 +107,16 @@ module.exports = {
 										if(error){
 											return ("Err:"+error)
 										}
-											console.log(result)
-											results.getPriceOf = result				
-	
-
+										results.getPriceOf = result				
 									})
 									//end of getCurrentUSDCent
 									.then(async()=>{
+										//wait for results
 										await promise
 										return cb(results)
 									})
-	})	// end of nesting
-	},
-    public2: function(){
-		// set contractInstance.methods to make transactionobject creation easy
-		var contractInstance = MyContract.methods;
-		var result = {
-			"totalSupply": contractInstance.totalSupply(),
-			"symbol": contractInstance.symbol(),
-			"name": contractInstance.name(),
-			"decimal": contractInstance.decimal(),
-			"owner": contractInstance.owner(),
-			"getContractAddress": contractInstance.getContractAddress(),
-			"contractBirthday": contractInstance.contractBirthday(),
-			"reserveBalance": contractInstance.reserveBalance(),
-			"txnb": contractInstance.txnb(),
-			"getAsk": contractInstance.getAsk(),
-			"getBid": contractInstance.getBid(),
-			"getCurrentUSDCent": "",
-			"getPriceOf": "",
-			"getTokenFor": "",
-		};
-		console.log(JSON.stringify(result));
-		return result;
-		},
-		
+		})	// end of nesting
+	},		
     byAddress: function(address){
 		return true;
 	}
