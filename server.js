@@ -13,7 +13,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var path = require('path');
 var router = express.Router();
-
+var hodl = require("./src/hodl.js")
 var server = require('http').createServer(app);
 // set the view engine to ejs
 app.set('view engine', 'ejs');
