@@ -77,21 +77,7 @@ module.exports = {
 			results.totalSupplyComma = commafy(result/(10**10))
 			//end of total supply
 		//Goin Gecko	
-		let ethPrice = async() => {
-			//let data = await CoinGeckoClient.coins.list();
-			let data = await CoinGeckoClient.coins.fetch('ethereum', {});
-			results.ethPrice = {
-				USD: data.data.market_data.current_price.usd,
-				EUR: data.data.market_data.current_price.eur,
-				CAD: data.data.market_data.current_price.cad,
-				BTC: data.data.market_data.current_price.btc,
-				LTC: data.data.market_data.current_price.ltc,
-				EOS: data.data.market_data.current_price.eos
-			}
-			// leave that to explore as a LOT of data is avalable in there
-			//console.log("data ", JSON.stringify(data.data.market_data.current_price))
-		};
-		 ethp = ethPrice()
+
 			
 			MyContract.methods.reserveBalance().call( async(error, result)=>{	
 				if(error){
@@ -146,14 +132,31 @@ module.exports = {
 									results.currentPriceUSDCent = result/10000				
 									results.priceIncreasePerCent = ((result/100) / 0.01)*100
 									results.marketcap = commafy( ((results.totalSupply/(10**10))* results.currentPriceUSDCent).toFixed(2))
+									let ethPrice = async() => {
+										//let data = await CoinGeckoClient.coins.list();
+										let data = await CoinGeckoClient.coins.fetch('ethereum', {});
+										results.ethPrice = {
+											USD: data.data.market_data.current_price.usd,
+											EUR: data.data.market_data.current_price.eur,
+											CAD: data.data.market_data.current_price.cad,
+											BTC: data.data.market_data.current_price.btc,
+											LTC: data.data.market_data.current_price.ltc,
+											EOS: data.data.market_data.current_price.eos
+										}
+										
+										results.getPriceOf = commafy((((result/10000)*((10**18)/(data.data.market_data.current_price.usd*10000)))/(10**14)).toFixed(9))
+										results.getPriceOfWei = commafy(Math.floor( (((result)*((10**18)/(data.data.market_data.current_price.usd*10000))))))
+										// leave that to explore as a LOT of data is avalable in there
+										//console.log("data ", JSON.stringify(data.data.market_data.current_price))
+									};
+									 ethp = ethPrice()
 								})
 								//end of currentPriceUSDCent
 									MyContract.methods.getPriceOf(1).call( async(error, result)=>{	
 										if(error){
 											return ("Err:"+error)
 										}
-										results.getPriceOf = (result	/ (10**8)).toFixed(9)
-										results.getPriceOfWei = (result	* (10**10))
+										results.getPriceOfPaid = (result	/ (10**8)).toFixed(9)
 									})
 									//end of getCurrentUSDCent
 									.then(async()=>{
