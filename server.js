@@ -48,8 +48,17 @@ app.get('/tx/:txid', function(req, res) {
 
 // explorer addresses page 
 app.get('/address/:address', function(req, res) {
-	var data = {address: req.params.address, title: "HODL Explorer | Address Details"}
-    res.render('pages/address', data);
+	var data = {title: "HODL Explorer | Address Details"}
+	hodl.byAddress(req.params.address, function(adddress_details){
+		data.balanceOf = adddress_details.balanceOf;
+		data.remainderBalanceOf = adddress_details.remainderBalanceOf;
+		data.address = req.params.address
+		hodl.public(function(results){
+			data.public = results
+			console.log(JSON.stringify(data))
+			res.render('pages/address', data);
+		})  
+	}) 
 });
 
 // trade 

@@ -154,7 +154,30 @@ module.exports = {
 									})
 		})	// end of nesting
 	},		
-    byAddress: function(address){
-		return true;
+    byAddress: function(address, cb){
+		let promise = new Promise((resolve, reject) => {
+			setTimeout(() => resolve("done!"), 1000)
+		});		
+		var results = {}
+
+		// nesting async call to ensure a unified results{} return value
+		MyContract.methods.balanceOf(address).call( async(error, result)=>{
+			if(error){
+				return ("Err:"+error)
+			}
+			results.balanceOf =  result
+				// nesting async call to ensure a unified results{} return value
+				MyContract.methods.remainderBalanceOf(address).call( async(error, result)=>{
+					if(error){
+						return ("Err:"+error)
+					}
+					results.remainderBalanceOf =  result			
+				})	
+				.then(async()=>{
+					//wait for results
+					await promise
+					return cb(results)
+				})
+		})	// end of nesting
 	}
 }
