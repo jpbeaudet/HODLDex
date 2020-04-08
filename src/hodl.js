@@ -79,7 +79,14 @@ module.exports = {
 		let ethPrice = async() => {
 			//let data = await CoinGeckoClient.coins.list();
 			let data = await CoinGeckoClient.coins.fetch('ethereum', {});
-			results.ethPrice = data.data.market_data.current_price
+			results.ethPrice = {
+				USD: data.data.market_data.current_price.usd,
+				EUR: data.data.market_data.current_price.eur,
+				CAD: data.data.market_data.current_price.cad,
+				BTC: data.data.market_data.current_price.btc,
+				LTC: data.data.market_data.current_price.ltc,
+				EOS: data.data.market_data.current_price.eos
+			}
 			// leave that to explore as a LOT of data is avalable in there
 			//console.log("data ", JSON.stringify(data.data.market_data.current_price))
 		};
