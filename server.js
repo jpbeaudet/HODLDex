@@ -51,8 +51,12 @@ app.get('/address/:address', function(req, res) {
 	var data = {title: "HODL Explorer | Address Details"}
 	hodl.byAddress(req.params.address, function(adddress_details){
 		data.balanceOf = adddress_details.balanceOf;
+		data.poolBalanceOf = adddress_details.poolBalanceOf || 0;
 		data.remainderBalanceOf = adddress_details.remainderBalanceOf;
+		data.remainderBalanceOfETH = adddress_details.remainderBalanceOfETH;
 		data.address = req.params.address
+		data.balanceOfUSD = adddress_details.balanceOfUSD;
+		data.balanceOfETH = adddress_details.balanceOfETH;
 		hodl.public(function(results){
 			data.public = results
 			console.log(JSON.stringify(data))

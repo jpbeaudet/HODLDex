@@ -58,7 +58,8 @@ function commafy( num ) {
         str[1] = str[1].replace(/(\d{3})/g, '$1');
     }
     return str.join('.');
-}	
+}
+var _usd;	
 module.exports = {
     public: function(cb){
 		let promise = new Promise((resolve, reject) => {
@@ -141,6 +142,7 @@ module.exports = {
 									if(error){
 										return ("Err:"+error)
 									}
+									_usd = result
 									results.currentPriceUSDCent = result/10000				
 									results.priceIncreasePerCent = ((result/100) / 0.01)*100
 									results.marketcap = commafy( ((results.totalSupply/(10**10))* results.currentPriceUSDCent).toFixed(2))
@@ -172,14 +174,44 @@ module.exports = {
 			if(error){
 				return ("Err:"+error)
 			}
-			results.balanceOf =  result
+			results.balanceOf =  commafy(result/ (10**10))
+			var balOf = result/ (10**10)
+			var priceOf1;
+			MyContract.methods.getPriceOf(1).call( async(error, result)=>{	
+				if(error){
+					return ("Err:"+error)
+				}
+				results.balanceOfETH = commafy((((balOf*(10**10)) * result)/(10**18)).toFixed(9))
+			})
+			MyContract.methods.currentPriceUSDCent().call( async(error, result)=>{	
+				if(error){
+				return ("Err:"+error)
+				}
+				results.balanceOfUSD =   "$"+commafy((balOf * (result/10000)).toFixed(2))
+			})
 				// nesting async call to ensure a unified results{} return value
 				MyContract.methods.remainderBalanceOf(address).call( async(error, result)=>{
 					if(error){
 						return ("Err:"+error)
 					}
-					results.remainderBalanceOf =  result			
+					results.remainderBalanceOf =  result
+					results.remainderBalanceOfETH =  (result / (10**18)).toFixed(18)	
+				})
+				MyContract.methods.getCount().call( async(error, result)=>{
+					if(error){
+						return ("Err:"+error)
+					}
+					var count =   result
+						
+						
+				MyContract.methods.poolBalanceOf(address).call( async(error, result2)=>{
+					if(error){
+						return ("Err:"+error)
+					}
+					results.poolBalanceOf =  result2[count]
+						
 				})	
+				})
 				.then(async()=>{
 					//wait for results
 					await promise
