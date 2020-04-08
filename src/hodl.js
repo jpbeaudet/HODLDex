@@ -9,7 +9,21 @@
 var Web3 = require('web3');
 var solc = require("solc");
 var fs = require('fs');
+///////////////////////////////////////
+/////Goin Gecko
+///// eth id=0xethereum-token
+////  market_data.current_price
+///////////////////////////////////////
+//1. Import coingecko-api
+const CoinGecko = require('coingecko-api');
 
+//2. Initiate the CoinGecko API Client
+const CoinGeckoClient = new CoinGecko();
+//3. Make calls
+var ethPrice = 
+console.log("POwered by Coin Gecko ")
+/////////////////////////////////////
+////web3
 // Connect to a Infuria server over JSON-RPC
 var web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/94841089cf24457ebaab3d909f3558d6"));
 var input = {
@@ -51,6 +65,7 @@ module.exports = {
 			setTimeout(() => resolve("done!"), 1000)
 		});		
 		var results = {}
+
 		// nesting async call to ensure a unified results{} return value
 		MyContract.methods.totalSupply().call( async(error, result)=>{
 
@@ -60,6 +75,16 @@ module.exports = {
 			results.totalSupply = result
 			results.totalSupplyComma = commafy(result/(10**10))
 			//end of total supply
+		//Goin Gecko	
+		let ethPrice = async() => {
+			//let data = await CoinGeckoClient.coins.list();
+			let data = await CoinGeckoClient.coins.fetch('ethereum', {});
+			results.ethPrice = data.data.market_data.current_price
+			// leave that to explore as a LOT of data is avalable in there
+			//console.log("data ", JSON.stringify(data.data.market_data.current_price))
+		};
+		 ethp = ethPrice()
+			
 			MyContract.methods.reserveBalance().call( async(error, result)=>{	
 				if(error){
 					return ("Err:"+error)
