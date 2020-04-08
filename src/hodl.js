@@ -172,41 +172,41 @@ module.exports = {
 		// nesting async call to ensure a unified results{} return value
 		MyContract.methods.balanceOf(address).call( async(error, result)=>{
 			if(error){
-				return ("Err:"+error)
+				return cb(null, error)
 			}
 			results.balanceOf =  commafy(result/ (10**10))
 			var balOf = result/ (10**10)
 			var priceOf1;
 			MyContract.methods.getPriceOf(1).call( async(error, result)=>{	
 				if(error){
-					return ("Err:"+error)
+					return cb(null, error)
 				}
 				results.balanceOfETH = commafy((((balOf*(10**10)) * result)/(10**18)).toFixed(9))
 			})
 			MyContract.methods.currentPriceUSDCent().call( async(error, result)=>{	
 				if(error){
-				return ("Err:"+error)
+					return cb(null, error)
 				}
 				results.balanceOfUSD =   "$"+commafy((balOf * (result/10000)).toFixed(2))
 			})
 				// nesting async call to ensure a unified results{} return value
 				MyContract.methods.remainderBalanceOf(address).call( async(error, result)=>{
 					if(error){
-						return ("Err:"+error)
+						return cb(null, error)
 					}
 					results.remainderBalanceOf =  result
 					results.remainderBalanceOfETH =  (result / (10**18)).toFixed(18)	
 				})
 				MyContract.methods.getCount().call( async(error, result)=>{
 					if(error){
-						return ("Err:"+error)
+						return cb(null, error)
 					}
 					var count =   result
 						
 						
 				MyContract.methods.poolBalanceOf(address).call( async(error, result2)=>{
 					if(error){
-						return ("Err:"+error)
+						return cb(null, error)
 					}
 					results.poolBalanceOf =  result2[count]
 						
@@ -215,7 +215,7 @@ module.exports = {
 				.then(async()=>{
 					//wait for results
 					await promise
-					return cb(results)
+					return cb(results, null)
 				})
 		})	// end of nesting
 	}

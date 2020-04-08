@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, 'data')));
 
 // index page 
 app.get('/', function(req, res) {
-	var data = {title: "HODL Explorer"}
+	var data = {title: "HODL Explorer", error: req.query.error}
 	hodl.public(function(results){
 		console.log(JSON.stringify(results))
 		data.public = results
@@ -42,27 +42,32 @@ app.get('/', function(req, res) {
 
 // explorer tx page 
 app.get('/tx/:txid', function(req, res) {
-	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details"}
+	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details", error:null}
     res.render('pages/tx', data);
 });
 
 // explorer addresses page 
 app.get('/address/:address', function(req, res) {
-	var data = {title: "HODL Explorer | Address Details"}
-	hodl.byAddress(req.params.address, function(adddress_details){
-		data.balanceOf = adddress_details.balanceOf;
-		data.poolBalanceOf = adddress_details.poolBalanceOf || 0;
-		data.remainderBalanceOf = adddress_details.remainderBalanceOf;
-		data.remainderBalanceOfETH = adddress_details.remainderBalanceOfETH;
-		data.address = req.params.address
-		data.balanceOfUSD = adddress_details.balanceOfUSD;
-		data.balanceOfETH = adddress_details.balanceOfETH;
-		hodl.public(function(results){
-			data.public = results
-			console.log(JSON.stringify(data))
-			res.render('pages/address', data);
-		})  
-	}) 
+	var data = {title: "HODL Explorer | Address Details", error:null}
+	try{
+		hodl.byAddress(req.params.address, function(adddress_details, err){
+			data.balanceOf = adddress_details.balanceOf ||0;
+			data.poolBalanceOf = adddress_details.poolBalanceOf || 0;
+			data.remainderBalanceOf = adddress_details.remainderBalanceOf ||0;
+			data.remainderBalanceOfETH = adddress_details.remainderBalanceOfETH ||0;
+			data.address = req.params.address
+			data.balanceOfUSD = adddress_details.balanceOfUSD ||0;
+			data.balanceOfETH = adddress_details.balanceOfETH ||0;
+			hodl.public(function(results){
+				data.public = results
+				console.log(JSON.stringify(data))
+				res.render('pages/address', data);
+			})  
+		})
+		
+	}catch(error){ 	
+		res.redirect('/'+"?error= "+error);
+	} 
 });
 
 // trade 
@@ -72,14 +77,36 @@ app.get('/trade', function(req, res) {
 
 // load trading platform for address
 app.get('/dex/:address', function(req, res) {
-	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell"}
-    res.render('pages/trade', data);
+	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell", error:null}
+	try{
+		hodl.byAddress(req.params.address, function(adddress_details, err){
+			data.balanceOf = adddress_details.balanceOf ||0;
+			data.poolBalanceOf = adddress_details.poolBalanceOf || 0;
+			data.remainderBalanceOf = adddress_details.remainderBalanceOf ||0;
+			data.remainderBalanceOfETH = adddress_details.remainderBalanceOfETH ||0;
+			data.address = req.params.address
+			data.balanceOfUSD = adddress_details.balanceOfUSD ||0;
+			data.balanceOfETH = adddress_details.balanceOfETH ||0;
+			hodl.public(function(results){
+				data.public = results
+				console.log(JSON.stringify(data))
+				res.render('pages/trade', data);
+			})  
+		})
+		
+	}catch(error){ 	
+		data.error = error
+		res.render('pages/trade', data);
+	} 
 });
 
 //  support 
 app.get('/support', function(req, res) {
-	var data = {title: "HODL Support & Contribute"}
-    res.render('pages/support', data);
+	var data = {title: "HODL Support & Contribute", error:null}
+	hodl.public(function(results){
+		data.public = results
+		res.render('pages/support', data);
+	})
 });
 
 //start server
