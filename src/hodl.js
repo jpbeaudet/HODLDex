@@ -60,13 +60,27 @@ function commafy( num ) {
     return str.join('.');
 }
 var _usd;	
+  
 module.exports = {
     public: function(cb){
 		let promise = new Promise((resolve, reject) => {
 			setTimeout(() => resolve("done!"), 1000)
 		});		
 		var results = {}
-
+		MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
+			//console.log(l)
+			results.events= l
+		MyContract.getPastEvents('BoughtPool', {fromBlock: 0, toBlock: 'latest'}, function(e2,l2){			
+			//console.log(l)
+			results.poolIndex= l2.length			
+			var count =   results.poolIndex								
+			MyContract.methods.getTokenBalanceOfPool(count).call( async(error, result2)=>{
+				if(error){
+					return cb(null, error)
+				}
+				results.getTokenBalanceOfPool =  result2
+									
+		})			 
 		// nesting async call to ensure a unified results{} return value
 		MyContract.methods.totalSupply().call( async(error, result)=>{
 
@@ -124,6 +138,7 @@ module.exports = {
 	
 							})
 							//end of getBids
+
 								MyContract.methods.currentPriceUSDCent().call( async(error, result)=>{	
 									if(error){
 										return ("Err:"+error)
@@ -164,7 +179,7 @@ module.exports = {
 										await promise
 										return cb(results)
 									})
-		})	// end of nesting
+		}) })	})// end of nesting
 	},		
     byAddress: function(address, cb){
 		let promise = new Promise((resolve, reject) => {

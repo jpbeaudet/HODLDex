@@ -1,4 +1,4 @@
-// Author: Jean-Philippe Beaudet @ S3R3NITY Technology 
+// Author: Jean-Philippe Beaudet  
 //
 // /server.js
 // Version : 0.0.1
