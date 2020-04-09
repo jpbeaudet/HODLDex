@@ -70,6 +70,16 @@ module.exports = {
 		MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
 			//console.log(l)
 			results.events= l
+			for (i = 0; i < l.length; i++) {
+				results.timestamp=[]
+				web3.eth.getBlock(results.events[i].blockNumber, (error, block) => {
+					var date = new Date(block.timestamp*1000).toUTCString()
+					results.timestamp.push(date);
+					console.log(block.timestamp)
+					// here you go
+				});
+
+			}
 		MyContract.getPastEvents('BoughtPool', {fromBlock: 0, toBlock: 'latest'}, function(e2,l2){			
 			//console.log(l)
 			results.poolIndex= l2.length			
