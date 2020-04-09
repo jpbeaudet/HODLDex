@@ -1,7 +1,7 @@
 <div class="col-lg-12">
                     <section class="box">
                         <header class="panel_header">
-                            <h2 class="title pull-left">Transactions History <br> <small><%= address%></small></h2>
+                            <h2 class="title pull-left">HODL Commodity Event Log <br> <small> <a href="https://etherscan.io/address/0x34642A469e096138531E6396C50D2d416d0B47D7" target="_blank"> 0x34642A469e096138531E6396C50D2d416d0B47D7 </a> </small></h2>
                             <div class="actions panel_actions pull-right">
                                 <a class="box_toggle fa fa-chevron-down"></a>
                             </div>
@@ -14,31 +14,26 @@
                                         <table id="tech-companies-1" class="table  table-small-font no-mb table-bordered table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>Transaction From-To</th>
-                                                    <th>Transaction ID</th>
-                                                    <th>Block</th>                                                  
+                                                    <th>Transaction From & To</th>
+                                                    <th>Transaction Hash & Signature</th>
+                                                    <th>Block & Block Hash</th>                                                  
                                                     <th>Time</th>
-                                                    <th>Status</th>
+                                                    <th>Event</th>
                                                     <th>Value</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                 <% for(var i=0; i < public.events.length ; i++) {%>
                                                 <tr>
-                                                    <td><small class="text-muted">From: <a href="#">0xa4ab16fa7f26aa482f2736f386533a406f7b9183</a></small><br><small class="text-muted">To: <a href="#"> 0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed</a></small></td>
-                                                    <td><small class="text-muted"><a href="#">0x50f06d180a25a83361d718561275cf18c88657011218321275072b1d7fdca7b8</a></small></td>
-                                                    <td><small class="text-muted">9807193 </small></td>
-                                                    <td><small class="text-muted">10:23:45</small></td>
-                                                    <td><span class="badge  w-70 round-success">success</span></td>
-                                                    <td class="green-text boldy">+0,041ETH</td>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.from%>" target="_blank"><%= public.events[i].returnValues.from%></a></small><br><small class="text-muted">To: <a href=""https://etherscan.io/address/<%= public.events[i].returnValues.to%>" target="_blank"> <%= public.events[i].returnValues.to%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.value%></td>
                                                 </tr>
-                                                <tr>
-                                                    <td><small class="text-muted">From: <a href="#">0xa4ab16fa7f26aa482f2736f386533a406f7b9183</a></small><br><small class="text-muted">To: <a href="#"> 0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed</a></small></td>
-                                                    <td><small class="text-muted"><a href="#">0x50f06d180a25a83361d718561275cf18c88657011218321275072b1d7fdca7b8</a></small></td>
-                                                    <td><small class="text-muted">9807193 </small></td>
-                                                    <td><small class="text-muted">10:23:45</small></td>
-                                                    <td><span class="badge  w-70 round-success">success</span></td>
-                                                    <td class="green-text boldy">+0,041ETH</td>
-                                                </tr>
+                                                <% } %>
+                                      
                                               
                                                 
 
