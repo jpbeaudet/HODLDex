@@ -43,7 +43,11 @@ app.get('/', function(req, res) {
 // explorer tx page 
 app.get('/tx/:txid', function(req, res) {
 	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details", error:null}
-    res.render('pages/tx', data);
+	hodl.public(function(results){
+		console.log(JSON.stringify(results))
+		data.public = results
+		res.render('pages/tx', data);
+	})  
 });
 
 // explorer addresses page 
@@ -107,6 +111,12 @@ app.get('/support', function(req, res) {
 		data.public = results
 		res.render('pages/support', data);
 	})
+});
+
+// error handler for bad request
+app.get('*', function(req, res){
+	var error = "Requested page does not exists"
+	res.redirect('/'+"?error= "+error);
 });
 
 //start server
