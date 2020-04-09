@@ -215,11 +215,8 @@ module.exports = {
 					results.remainderBalanceOf =  result
 					results.remainderBalanceOfETH =  (result / (10**18)).toFixed(18)	
 				})
-				MyContract.methods.getCount().call( async(error, result)=>{
-					if(error){
-						return cb(null, error)
-					}
-					var count =   result
+				MyContract.getPastEvents('BoughtPool', {fromBlock: 0, toBlock: 'latest'}, function(e2,l2){			
+					var count =  l2.length
 						
 						
 				MyContract.methods.poolBalanceOf(address).call( async(error, result2)=>{
