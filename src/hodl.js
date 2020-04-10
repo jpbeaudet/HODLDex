@@ -49,6 +49,31 @@ var address = "0x34642A469e096138531E6396C50D2d416d0B47D7"
 // Create a proxy object to access the smart contract
 var MyContract = new web3.eth.Contract(abiArray);
 MyContract.options.address = address
+
+function isInstalled() {
+   if (typeof web3 !== 'undefined'){
+      console.log('MetaMask is installed')
+   } 
+   else{
+      console.log('MetaMask is not installed')
+   }
+}
+isInstalled()
+function isLocked() {
+   web3.eth.getAccounts(function(err, accounts){
+      if (err != null) {
+         console.log(err)
+      }
+      else if (accounts.length === 0) {
+         console.log('MetaMask is locked')
+        
+      }
+      else {
+         console.log('MetaMask is unlocked')
+      }
+   });
+}
+isLocked()
 function commafy( num ) {
     var str = num.toString().split('.');
     if (str[0].length >= 5) {
@@ -64,7 +89,7 @@ var _usd;
 module.exports = {
     public: function(cb){
 		let promise = new Promise((resolve, reject) => {
-			setTimeout(() => resolve("done!"), 1500)
+			setTimeout(() => resolve("done!"), 2000)
 		});		
 		var results = {}
 		MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
