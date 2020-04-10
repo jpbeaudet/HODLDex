@@ -84,137 +84,208 @@ function commafy( num ) {
     }
     return str.join('.');
 }
-var _usd;	
+
   
 module.exports = {
     public: function(cb){
-		let promise = new Promise((resolve, reject) => {
-			setTimeout(() => resolve("done!"), 1500)
-		});		
 		var results = {}
-		MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
-			//console.log(l)
-			results.events= l
-			for (i = 0; i < l.length; i++) {
-				results.timestamp=[]
-				web3.eth.getBlock(results.events[i].blockNumber, (error, block) => {
-					var date = new Date(block.timestamp*1000).toUTCString()
-					results.timestamp.push(date);
-					console.log(block.timestamp)
-					// here you go
-				});
-
-			}
-		MyContract.getPastEvents('BoughtPool', {fromBlock: 0, toBlock: 'latest'}, function(e2,l2){			
-			//console.log(l)
-			results.poolIndex= l2.length			
-			var count =   results.poolIndex								
-			MyContract.methods.getTokenBalanceOfPool(count).call( async(error, result2)=>{
-				if(error){
-					return cb(null, error)
+		let promise = new Promise((resolve, reject) => {
+			setTimeout(() => resolve("done!"), 250)
+		});		
+		let promise_getPastEvents = new Promise((resolve, reject) => {
+			MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
+				//console.log(l)
+				results.events= l
+				for (i = 0; i < l.length; i++) {
+					results.timestamp=[]
+					web3.eth.getBlock(results.events[i].blockNumber, (error, block) => {
+						var date = new Date(block.timestamp*1000).toUTCString()
+						results.timestamp.push(date);
+						//console.log(block.timestamp)
+						
+						// here you go
+					});
 				}
-				results.getTokenBalanceOfPool =  result2
-									
-		})			 
+				resolve("ok")
+			})
+		});			
+		let promise_getPastEvents_pool = new Promise((resolve, reject) => {
+			MyContract.getPastEvents('BoughtPool', {fromBlock: 0, toBlock: 'latest'}, function(e2,l2){			
+				//console.log(l)
+				results.poolIndex= l2.length			
+				var count =   results.poolIndex								
+				MyContract.methods.getTokenBalanceOfPool(count).call( async(error, result2)=>{
+					if(error){
+						console.log("hodl: "+error)
+						return cb(null, error)
+					}
+					results.getTokenBalanceOfPool =  result2
+					resolve("ok")
+										
+					})	
+				})
+		})
+		let promise_totalSupply = new Promise((resolve, reject) => {		 
 		// nesting async call to ensure a unified results{} return value
-		MyContract.methods.totalSupply().call( async(error, result)=>{
+			MyContract.methods.totalSupply().call( async(error, result)=>{
 
-			if(error){
-				return ("Err:"+error)
-			}
-			results.totalSupply = result
-			results.totalSupplyComma = commafy(result/(10**10))
-			//end of total supply
-		//Goin Gecko	
-
-			
+				if(error){
+					console.log("hodl: "+error)
+					return ("Err:"+error)
+				}
+				results.totalSupply = result
+				results.totalSupplyComma = commafy(result/(10**10))
+						resolve("ok")
+				//end of total supply
+				//Goin Gecko	
+				})
+		})
+		let promise_reserveBalance = new Promise((resolve, reject) => {			
 			MyContract.methods.reserveBalance().call( async(error, result)=>{	
 				if(error){
+					console.log("hodl: "+error)
 					return ("Err:"+error)
 				}
 				results.reserveBalance = commafy( (result / (10**10)).toFixed(10)	)			
-		
-			})
-			//end of reserveBalance
-				MyContract.methods.getContractAddress().call( async(error, result)=>{	
-					if(error){
-						return ("Err:"+error)
-					}
-					results.getContractAddress =  result				
-		
+				resolve("ok")
 				})
-				//end of getContractAddress
-					MyContract.methods.txnb().call( async(error, result)=>{	
-						if(error){
-							return ("Err:"+error)
-						}
-						results.txnb =  result				
-	
-					})
-					//end of txnb
-						MyContract.methods.getAsks().call( async(error, result)=>{	
-							if(error){
-								return ("Err:"+error)
-							}
-							results.getAsks ={}
-							results.getAsks.address =  result["0"]	
-							results.getAsks.amount=  result["1"]			
-							//results.getAsks.address = ["0xbfhfgr665h5h55"]	
-							//results.getAsks.amount= [1234]			
-						})
-						//end of getAsks
-							MyContract.methods.getBids().call( async(error, result)=>{	
-								if(error){
-									return ("Err:"+error)
-								}
-								results.getBids ={}
-								results.getBids.address = result["0"]	
-								results.getBids.amount= result["1"]			
-	
-							})
-							//end of getBids
+		})
+			//end of reserveBalance
+		let promise_getContractAddress = new Promise((resolve, reject) => {	
+			MyContract.methods.getContractAddress().call( async(error, result)=>{	
+				if(error){
+					console.log("hodl: "+error)
+					return ("Err:"+error)
+				}
+				results.getContractAddress =  result				
+				resolve("ok")		
+			})
+		})
+		//end of getContractAddress
+		let promise_txnb = new Promise((resolve, reject) => {
 
-								MyContract.methods.currentPriceUSDCent().call( async(error, result)=>{	
-									if(error){
-										return ("Err:"+error)
-									}
-									_usd = result
-									results.currentPriceUSDCent = result/10000				
-									results.priceIncreasePerCent = ((result/100) / 0.01)*100
-									results.marketcap = commafy( ((results.totalSupply/(10**10))* results.currentPriceUSDCent).toFixed(2))
-									let ethPrice = async() => {
-										//let data = await CoinGeckoClient.coins.list();
-										let data = await CoinGeckoClient.coins.fetch('ethereum', {});
-										results.ethPrice = {
-											USD: data.data.market_data.current_price.usd,
-											EUR: data.data.market_data.current_price.eur,
-											CAD: data.data.market_data.current_price.cad,
-											BTC: data.data.market_data.current_price.btc,
-											LTC: data.data.market_data.current_price.ltc,
-											EOS: data.data.market_data.current_price.eos
-										}
-										
-										results.getPriceOf = commafy((((result/10000)*((10**18)/(data.data.market_data.current_price.usd*10000)))/(10**14)).toFixed(9))
-										results.getPriceOfWei = commafy(Math.floor( (((result)*((10**18)/(data.data.market_data.current_price.usd*10000))))))
-										// leave that to explore as a LOT of data is avalable in there
-										//console.log("data ", JSON.stringify(data.data.market_data.current_price))
-									};
-									 ethp = ethPrice()
-								})
-								//end of currentPriceUSDCent
-									MyContract.methods.getPriceOf(1).call( async(error, result)=>{	
-										if(error){
-											return ("Err:"+error)
-										}
-										results.getPriceOfPaid = (result	/ (10**8)).toFixed(9)
+			MyContract.methods.txnb().call( async(error, result)=>{	
+				if(error){
+					console.log("hodl: "+error)
+					return ("Err:"+error)
+				}
+				results.txnb =  result				
+				resolve("ok")
+			})
+		})
+		//end of txnb
+		let promise_getAsks = new Promise((resolve, reject) => {
+			MyContract.methods.getAsks().call( async(error, result)=>{	
+				if(error){
+					console.log("hodl: "+error)
+					return ("Err:"+error)
+				}
+				results.getAsks ={}
+				results.getAsks.address =  result["0"]	
+				results.getAsks.amount=  result["1"]
+				resolve("ok")					
+			})
+		})
+		//end of getAsks
+		let promise_getBids = new Promise((resolve, reject) => {
+			MyContract.methods.getBids().call( async(error, result)=>{	
+				if(error){
+					console.log("hodl: "+error)
+					return ("Err:"+error)
+				}
+				results.getBids ={}
+				results.getBids.address = result["0"]	
+				results.getBids.amount= result["1"]	
+				resolve("ok")		
+			})
+		})
+		//end of getBids
+		let promise_currentPriceUSDCent = new Promise((resolve, reject) => {
+			MyContract.methods.currentPriceUSDCent().call( async(error, result)=>{	
+				if(error){
+					return ("Err:"+error)
+				}
+				let ethPrice = async(res) => {
+					//let data = await CoinGeckoClient.coins.list();
+					let data = await CoinGeckoClient.coins.fetch('ethereum', {}).then((data) =>{
+						results.ethPrice = {
+							USD: data.data.market_data.current_price.usd,
+							EUR: data.data.market_data.current_price.eur,
+							CAD: data.data.market_data.current_price.cad,
+							BTC: data.data.market_data.current_price.btc,
+							LTC: data.data.market_data.current_price.ltc,
+							EOS: data.data.market_data.current_price.eos
+						}																				
+						results.getPriceOf = commafy((((res/10000)*((10**18)/(data.data.market_data.current_price.usd*10000)))/(10**14)).toFixed(9))
+						results.getPriceOfWei = commafy(Math.floor( (((res)*((10**18)/(data.data.market_data.current_price.usd*10000))))))
+						// leave that to explore as a LOT of data is avalable in there
+						//console.log("data ", JSON.stringify(data.data.market_data.current_price))
+						results.currentPriceUSDCent = res/10000				
+						results.priceIncreasePerCent = ((res/100) / 0.01)*100
+						results.marketcap = commafy( ((results.totalSupply/(10**10))* results.currentPriceUSDCent).toFixed(2))
+						resolve("ok")
+						})	
+					};
+					ethp = ethPrice(result)
+					await promise							 
+			})
+		})
+		//end of currentPriceUSDCent
+		let promise_getPriceOf = new Promise((resolve, reject) => {
+			MyContract.methods.getPriceOf(1).call( async(error, result)=>{	
+				if(error){
+					console.log("hodl: "+error)
+					return ("Err:"+error)
+				}
+				results.getPriceOfPaid = (result	/ (10**8)).toFixed(9)
+				resolve("ok")
+			})
+		})
+		//end of getCurrentUSDCent
+		var start = promise_getPriceOf.then(async()=>{							
+										//wait for results
+										await promise_getPastEvents
 									})
-									//end of getCurrentUSDCent
 									.then(async()=>{
 										//wait for results
-										await promise
-										return cb(results)
+										await promise_getPastEvents_pool
+									})	
+									.then(async()=>{
+										//wait for results
+										await promise_totalSupply
+									})	
+									.then(async()=>{
+										//wait for results
+										await promise_reserveBalance
+									})	
+									.then(async()=>{
+										//wait for results
+										await promise_getContractAddress
+									})	
+									.then(async()=>{
+										//wait for results
+										await promise_txnb
 									})
-		}) })	})// end of nesting
+									.then(async()=>{
+										//wait for results
+										await promise_getAsks
+									})
+									.then(async()=>{
+										//wait for results
+										await promise_getBids
+									})
+									.then(async()=>{
+										//wait for results
+										await promise_currentPriceUSDCent
+									})
+									//.then(async()=>{
+										//wait for results
+										//await promise_getPriceOf
+									//})							
+									.then(async()=>{
+										//wait for results
+										return cb(results)
+									})		 	
 	},		
     byAddress: function(address, cb){
 		let promise = new Promise((resolve, reject) => {
