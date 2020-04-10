@@ -64,7 +64,7 @@ var _usd;
 module.exports = {
     public: function(cb){
 		let promise = new Promise((resolve, reject) => {
-			setTimeout(() => resolve("done!"), 1000)
+			setTimeout(() => resolve("done!"), 1500)
 		});		
 		var results = {}
 		MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
