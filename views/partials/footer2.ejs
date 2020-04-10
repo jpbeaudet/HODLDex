@@ -31,6 +31,7 @@
     <!-- CORE TEMPLATE JS - START -->
     <script src="../js/scripts.js"></script>
     <!-- END CORE TEMPLATE JS - END --><script src="web3.min.js"></script>
+<script src="web3.min.js"></script>
 
 <script type="text/javascript">
 
@@ -45,13 +46,13 @@
 
     	console.log(web3.currentProvider);
 
-        if (web3.currentProvider.isMetaMask === true) {
+       if (web3.currentProvider.isMetaMask === true) {
         console.log("metamask");
         window.ethereum.enable()
-			$('#metawarning').fadeOut()
+			$('#metawarning').hide("fast")
         } else {
         console.log("not metamask");
-            $('#metawarning').fadeIn()
+            $('#metawarning').show( "fast" )
 
         }
     }
@@ -84,10 +85,11 @@ var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
 var isBlink = (isChrome || isOpera) && !!window.CSS;
 
 if(isChrome || isFirefox){
-	$('#browserwarning').fadeOut()
+	$('#browserwarning').hide("fast")
 }else{
-$('#browserwarning').fadein()
+$('#browserwarning').show( "fast" )
 }
+
 </script>
 <script>
 var myVar;
@@ -97,4 +99,3 @@ window.onload = function() {
 
 }
 </script>
-
