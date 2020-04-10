@@ -30,5 +30,71 @@
 
     <!-- CORE TEMPLATE JS - START -->
     <script src="../js/scripts.js"></script>
-    <!-- END CORE TEMPLATE JS - END -->
+    <!-- END CORE TEMPLATE JS - END --><script src="web3.min.js"></script>
+
+<script type="text/javascript">
+
+	web3 = window.web3;
+	console.log(web3);
+
+    // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+    if (typeof web3 !== 'undefined') {
+        // Use Mist/MetaMask's provider
+        web3 = new Web3(web3.currentProvider);
+        window.web3 = new Web3(web3.currentProvider);
+
+    	console.log(web3.currentProvider);
+
+        if (web3.currentProvider.isMetaMask === true) {
+        console.log("metamask");
+        window.ethereum.enable()
+			$('#metawarning').fadeOut()
+        } else {
+        console.log("not metamask");
+            $('#metawarning').fadeIn()
+
+        }
+    }
+
+</script>
+<script type="text/javascript">
+
+// Opera 8.0+
+var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+
+// Firefox 1.0+
+var isFirefox = typeof InstallTrigger !== 'undefined';
+
+// Safari 3.0+ "[object HTMLElementConstructor]" 
+var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+
+// Internet Explorer 6-11
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
+
+// Edge 20+
+var isEdge = !isIE && !!window.StyleMedia;
+
+// Chrome 1 - 79
+var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+
+// Edge (based on chromium) detection
+var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
+
+// Blink engine detection
+var isBlink = (isChrome || isOpera) && !!window.CSS;
+
+if(isChrome || isFirefox){
+	$('#browserwarning').fadeOut()
+}else{
+$('#browserwarning').fadein()
+}
+</script>
+<script>
+var myVar;
+
+window.onload = function() {
+  document.getElementById("loader").style.display = "none";
+
+}
+</script>
 
