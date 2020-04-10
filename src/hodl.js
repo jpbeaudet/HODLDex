@@ -243,5 +243,25 @@ module.exports = {
 					return cb(results, null)
 				})
 		})	// end of nesting
+	},
+	getTx : function(query, cb){
+		web3.eth.getTransaction(query, function(error,tx){
+			if (error){
+				return cb(null, error)
+			}
+			return cb(tx, null)
+		})	
+	},
+	getAddr : function(query, cb){
+			try{
+		web3.eth.getBalance(query, function(error,addr){
+			if (error){
+				return cb(null, error)
+			}
+			return cb(addr, null)
+		})
+		}catch(error){ 	
+			return cb(null, error)
+		} 	
 	}
 }

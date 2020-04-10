@@ -79,6 +79,29 @@ app.get('/trade', function(req, res) {
     res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");
 });
 
+// search 
+app.post('/search', function(req, res) {
+	try{
+		hodl.getTx(req.body.search, function(tx, err){
+			if (err){
+				hodl.getAddr(req.body.search, function(addr, error){
+					if (error){
+						res.redirect('/'+"?error= "+error);
+					}else{
+						res.redirect('address/'+req.body.search);
+					}
+				})
+			}else{			
+				res.redirect('tx/'+req.body.search);
+			}
+		})
+		
+	}catch(error){ 	
+		//res.redirect('/'+"?error= "+error);
+	} 
+    
+});
+
 // load trading platform for address
 app.get('/dex/:address', function(req, res) {
 	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell", error:null}
