@@ -103,14 +103,20 @@ app.post('/sync', function(req, res) {
 		var data = {title: "HODL | Synchronize Your Wallet", error:null}
 			var from = req.body.wallet
 			console.log(from)
-			req.session.wallet =  req.body.wallet
-			hodl.public(function(results){
-				data.public = results
-				console.log(JSON.stringify(data))
-				if( from){
-					res.redirect('dex/'+from);
-				}else{
-					res.render('pages/syncWallet', data);
+			hodl.getAddr(from, function(addr, error){
+				if (error){
+					res.redirect('/'+"?error= "+error);
+				}else{		
+					req.session.wallet =  req.body.wallet		
+					hodl.public(function(results){
+						data.public = results
+						console.log(JSON.stringify(data))
+						if( from){
+							res.redirect('dex/'+from);
+						}else{
+							res.render('pages/syncWallet', data);
+						}
+					})
 				}
 			})
     //res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");    
