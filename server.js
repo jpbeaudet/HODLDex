@@ -182,7 +182,7 @@ app.get('/support', function(req, res) {
 ////////////////////////////
 // sell hodl
 app.post('/sell', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var amount = req.body.amounts1
 	if(from && amount){
 		hodl.sell(from, amount, function(results, error){
@@ -198,7 +198,7 @@ app.post('/sell', function(req, res) {
 });
 // sell hodl to bid
 app.post('/sellToBid', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var to = req.body.addresss2
 	var amount = req.body.amounts2
 	if(from && to && amount){
@@ -215,7 +215,7 @@ app.post('/sellToBid', function(req, res) {
 });
 // pre-approve transaction with address
 app.post('/approveTransactionForAddress', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var to = req.body.addressb3
 	var amount = req.body.amounts3
 	if(from && to && amount){
@@ -235,7 +235,7 @@ app.post('/approveTransactionForAddress', function(req, res) {
 ////////////////////////////
 // generic buy function, autobuy , buy from reserve or create a bid
 app.post('/Buy', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var amount = req.body.amountb1
 	if(from && amount){
 		hodl.Buy(from, amount, function(results, error){
@@ -251,7 +251,7 @@ app.post('/Buy', function(req, res) {
 });
 // buy from reserve only
 app.post('/buyFromReserve', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var amount = req.body.amountb2
 	if(from && amount){
 		hodl.buyFromReserve(from, amount, function(results, error){
@@ -267,7 +267,7 @@ app.post('/buyFromReserve', function(req, res) {
 });
 // buy from address
 app.post('/buyFromAddress', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var to = req.body.addressb3
 	var amount = req.body.amountb3
 	if(from && amount){
@@ -284,7 +284,7 @@ app.post('/buyFromAddress', function(req, res) {
 });
 // buy from ask
 app.post('/buyFromAsk', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var to = req.body.addressb4
 	var amount = req.body.amountb4
 	if(from && amount){
@@ -305,7 +305,7 @@ app.post('/buyFromAsk', function(req, res) {
 ////////////////////////////
 // buy from pool
 app.post('/buyFromPool', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var amount = req.body.amountp11
 	if(from && amount){
 		hodl.buyFromPool(from, amount, function(results, error){
@@ -321,7 +321,7 @@ app.post('/buyFromPool', function(req, res) {
 });
 // sell hodl to current pool
 app.post('/sellInPool', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var amount = req.body.amountp1
 	if(from && amount){
 		hodl.sellInPool(from, amount, function(results, error){
@@ -337,7 +337,7 @@ app.post('/sellInPool', function(req, res) {
 });
 //  withdraw hodl from the pool
 app.post('/removeTokensFromPool', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	var amount = req.body.amountp2
 	if(from && amount){
 		hodl.removeTokensFromPool(from, amount, function(results, error){
@@ -353,7 +353,7 @@ app.post('/removeTokensFromPool', function(req, res) {
 });
 //  withdraw ethereum from the pool
 app.post('/withdrawEthFromPoolSale', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	if(from){
 		hodl.withdrawEthFromPoolSale(from, function(results, error){
 			if (error){
@@ -368,7 +368,7 @@ app.post('/withdrawEthFromPoolSale', function(req, res) {
 });
 //  withdraw ethereum 
 app.post('/withdrawRemainderEthereum', function(req, res) {
-	var from = req.query.from
+	var from = req.session.wallet
 	if(from){
 		hodl.withdrawRemainderEthereum(from, function(results, error){
 			if (error){
