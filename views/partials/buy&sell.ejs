@@ -84,6 +84,11 @@
                                                             <i class="fa fa-arrow-down"></i>Withdraw Remainder Ethereum from Contract
                                                         </a>
                                                     </li>
+                                                    <li>
+                                                        <a href="#buy6" data-toggle="tab">
+                                                            <i class="fa fa-arrow-down"></i>Cancel Bid
+                                                        </a>
+                                                    </li>
                                                 </ul>
 
                                                 <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
@@ -187,6 +192,17 @@
                                                             <button type="submit" class="btn btn-block btn-primary">Withdraw Remainder Ethereum </button>
                                                         </form>
                                                     </div>
+                                                    <div class="tab-pane fade" id="buy6">
+
+														<form action="/CancelBid" method="post">
+                                                            <div class="">
+                                                                <label class="">
+																	<span class="help-block"><small> This will cancel a current bid if any. A participant can only have one bid board at a time, any additional bidding will add up to the current board. If none exist it will do nothing. </small></span>
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-block btn-primary">Cancel Bid</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -232,6 +248,11 @@
                                                     <li>
                                                         <a href="#sell3" data-toggle="tab">
                                                             <i class="fa fa-check"></i> Approve Transaction From Address
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#sell4" data-toggle="tab">
+                                                            <i class="fa fa-check"></i> Cancel Ask
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -281,6 +302,17 @@
                                                             <button type="submit" class="btn btn-block btn-primary">Sell To Bid</button>
                                                         </form>
                                                     </div>
+                                                    <div class="tab-pane fade" id="sell4">
+
+														<form action="/CancelBid" method="post">
+                                                            <div class="">
+                                                                <label class="">
+																	<span class="help-block"><small> This will cancel a current ask board if any. A participant can only have one ask at a time, any additional asking will add up to the current board. If none exist it will do nothing. </small></span>
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-block btn-primary">Cancel Ask</button>
+                                                        </form>
+                                                    </div>
                                                     <div class="tab-pane fade" id="sell3">
 
 														<form action="/approveTransactionForAddress" method="post">
@@ -305,6 +337,7 @@
                                                         </form
                                                     </div>
 
+                                                    
                                                 </div>
                                             </div>
 

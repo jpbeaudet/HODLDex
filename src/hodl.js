@@ -381,6 +381,16 @@ module.exports = {
 		})			
 		
 	},
+	CancelAsk : function(from, cb){
+		MyContract.methods.CancelAsk().call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},	
 	// buy section
 	Buy : function(from, amount, cb){
 		MyContract.methods.Buy().call({from: from, value: amount}, async(error, result)=>{
@@ -422,6 +432,16 @@ module.exports = {
 		})			
 		
 	},
+	CancelBid : function(from, cb){
+		MyContract.methods.CancelBid ().call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},	
 	// pool section
 	buyFromPool : function(from, to, amount, cb){
 		MyContract.methods.buyFromPool().call({from: from, value: amount}, async(error, result)=>{
@@ -483,6 +503,7 @@ module.exports = {
 		})			
 		
 	},
+	// utils
 	getBalance: function(from, cb){
 		web3.eth.getBalance(from, function(error, bal){
 			if (error){

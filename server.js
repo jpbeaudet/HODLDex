@@ -286,6 +286,21 @@ app.post('/approveTransactionForAddress', function(req, res) {
 		res.redirect("/?error=bad url parameter")
 	}
 });
+//  cancel current bask, if none return nothing
+app.post('/CancelAsk', function(req, res) {
+	var from = req.session.wallet
+	if(from){
+		hodl.CancelAsk(from, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
 ///////////////
 ///// Buy section
 ////////////////////////////
@@ -420,6 +435,22 @@ app.post('/buyFromAsk', function(req, res) {
 			})
 		}
 			})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+
+//  cancel current bid, if none return nothing
+app.post('/CancelBid', function(req, res) {
+	var from = req.session.wallet
+	if(from){
+		hodl.CancelBid(from, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
 	}else{
 		res.redirect("/?error=bad url parameter")
 	}
