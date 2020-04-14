@@ -1,3 +1,4 @@
+
 <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                     <div class="ask-box v2 active mt-15">
 
@@ -90,10 +91,10 @@
 
 														<form action="/Buy" method="post" >
 															<label for="conversion1" class="form-label">Units</label>
-															<select class="form-control input-sm m-bot15" id="conversion1">
-																<option value="0">Ether</option>
+															<select class="form-control input-sm m-bot15" id="conversion1" name="conversion1">
+																<option value="18">Ether</option>
 																<option value="9">Gwei</option>
-																<option value="18">Wei</option>
+																<option value="0">Wei</option>
 															</select>
                                                             <div class="form-group">
 
@@ -112,14 +113,14 @@
 
 														<form action="/buyFromReserve" method="post" >
 															<label for="conversion2" class="form-label">Units</label>
-															<select class="form-control input-sm m-bot15" id="conversion2">
-																<option value="0">Ether</option>
+															<select class="form-control input-sm m-bot15" id="conversion2" name="conversion2">
+																<option value="18">Ether</option>
 																<option value="9">Gwei</option>
-																<option value="18">Wei</option>
+																<option value="0">Wei</option>
 															</select>
                                                             <div class="form-group">
 																<label for="amountb2" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amountb2" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amountb2" name="amountb2" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -132,16 +133,16 @@
                                                     <div class="tab-pane fade" id="buy3">
 														<form action="/buyFromAddress" method="post" >
 															<label for="conversion3" class="form-label">Units</label>
-															<select class="form-control input-sm m-bot15" id="conversion3">
-																<option value="0">Ether</option>
+															<select class="form-control input-sm m-bot15" id="conversion3" name="conversion3">
+																<option value="18">Ether</option>
 																<option value="9">Gwei</option>
-																<option value="18">Wei</option>
+																<option value="0">Wei</option>
 															</select>
                                                             <div class="form-group">
                                                                 <label for="amountb3" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amountb3" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amountb3" name="amountb3" placeholder="Enter Desired Amount">
                                                                 <label for="addressb3" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="addressb3" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
+                                                                <input type="text" class="form-control" id="addressb3" name="addressb3" placeholder="Enter Ethereum Address" pattern="^0x[a-fA-F0-9]{40}$">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -154,17 +155,17 @@
 
                                                     <div class="tab-pane fade" id="buy4">
 															<label for="conversion4" class="form-label">Units</label>
-															<select class="form-control input-sm m-bot15" id="conversion4">
-																<option value="0">Ether</option>
+															<select class="form-control input-sm m-bot15" id="conversion4" name="conversion4">
+																<option value="18">Ether</option>
 																<option value="9">Gwei</option>
-																<option value="18">Wei</option>
+																<option value="0">Wei</option>
 															</select>
 														<form action="/buyFromAsk" method="post">
                                                             <div class="form-group">
                                                                 <label for="amountb4" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amountb4" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amountb4" name="amountb4" placeholder="Enter Desired Amount">
                                                                 <label for="addressb4" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="addressb4" placeholder="Enter Ask Address" pattern="/^(0x)?[0-9a-f]{40}$/">
+                                                                <input type="text" class="form-control" id="addressb4" name="addressb4" placeholder="Enter Ask Address" pattern="^0x[a-fA-F0-9]{40}$">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -256,9 +257,9 @@
 														<form action="/sellToBid" method="post">
                                                             <div class="form-group">
                                                                 <label for="amounts2" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amounts2" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amounts2" name="amounts2" placeholder="Enter Desired Amount">
                                                                 <label for="addressb2" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="address2" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
+                                                                <input type="text" class="form-control" id="address2" name="address2" placeholder="Enter Ethereum Address" pattern="^0x[a-fA-F0-9]{40}$">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -273,9 +274,9 @@
 														<form action="/approveTransactionForAddress" method="post">
                                                             <div class="form-group">
                                                                 <label for="amounts3" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amounts3" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amounts3" name="amounts3" placeholder="Enter Desired Amount">
 																<label for="addressb3" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="address3" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
+                                                                <input type="text" class="form-control" id="address3" name="address3" placeholder="Enter Ethereum Address" pattern="^0x[a-fA-F0-9]{40}$">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -349,14 +350,15 @@
 
 														<form action="/buyFromPool" method="post">
 															<label for="conversion5" class="form-label">Units</label>
-															<select class="form-control input-sm m-bot15" id="conversion5">
-																<option value="0">Ether</option>
+															<select class="form-control input-sm m-bot15" id="conversion5" name="conversion5">
+																<option value="18">Ether</option>
 																<option value="9">Gwei</option>
-																<option value="18">Wei</option>
+																<option value="0">Wei</option>
+															</select>
 															</select>
                                                             <div class="form-group">
                                                                 <label for="amountp11" class="form-label">Ethereum Amount</label>
-                                                                <input type="number" class="form-control" id="amountp1" name="amountp1" placeholder="Enter Ethereum to send">
+                                                                <input type="number" class="form-control" id="amountp11" name="amountp11" placeholder="Enter Ethereum to send">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -371,7 +373,7 @@
 														<form action="/sellInPool" method="post">
                                                             <div class="form-group">
                                                                 <label for="amountp1" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amountp1" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amountp1" name="amountp1" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -387,7 +389,7 @@
 														<form action="/removeTokensFromPool" method="post">
                                                             <div class="form-group">
                                                                 <label for="amountp2" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amountp2" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amountp2" name="amountp2" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">

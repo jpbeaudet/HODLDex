@@ -146,7 +146,8 @@ app.post('/search', function(req, res) {
 
 // load trading platform for address
 app.get('/dex/:address', function(req, res) {
-	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell", error:null}
+	var error = req.query.error
+	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell", error:error}
 	try{
 		hodl.byAddress(req.params.address, function(adddress_details, err){
 			data.balanceOf = adddress_details.balanceOf ||0;
@@ -205,14 +206,21 @@ app.post('/sell', function(req, res) {
 // sell hodl to bid
 app.post('/sellToBid', function(req, res) {
 	var from = req.session.wallet
-	var to = req.body.addresss2
+	var to = req.body.address2
 	var amount = req.body.amounts2
+	console.log(from+to+amount)
 	if(from && to && amount){
-		hodl.sellToBid(from, to, amount, function(results, error){
-			if (error){
-				res.redirect('dex/'+from+"?error="+error)
-			}else{	
-				res.redirect('dex/'+from)
+		hodl.getAddr(from, function(addr, errAddr){
+			if (errAddr){
+				res.redirect("dex/"+from+"?error= "+errAddr);
+			}else{
+				hodl.sellToBid(from, to, amount, function(results, error){
+					if (error){
+						res.redirect('dex/'+from+"?error="+error)
+					}else{	
+						res.redirect('dex/'+from)
+					}
+				})
 			}
 		})
 	}else{
@@ -263,7 +271,7 @@ app.post('/Buy', function(req, res) {
 					}
 				})
 			}else{
-				res.redirect("/?error=Not Enougth Ether Balance")
+				res.redirect("dex/"+from+"?error=Not Enougth Ether Balance")
 			}
 		})
 	}else{
@@ -274,14 +282,28 @@ app.post('/Buy', function(req, res) {
 app.post('/buyFromReserve', function(req, res) {
 	var from = req.session.wallet
 	var amount = req.body.amountb2
+	var units = req.body.conversion2
+	console.log("units: "+units)
 	if(from && amount){
-		hodl.buyFromReserve(from, amount, function(results, error){
-			if (error){
-				res.redirect('dex/'+from+"?error="+error)
-			}else{	
-				res.redirect('dex/'+from)
+		hodl.getBalance(from, function(bal, errbal){
+			if (errbal){
+				res.redirect('dex/'+from+"?error="+errbal)
+			}
+			console.log("bal: "+bal)
+			console.log("required: "+((amount)*(10**units)))
+			if(bal >= ((amount)*(10**units))){
+			hodl.buyFromReserve(from, amount, function(results, error){
+				if (error){
+					res.redirect('dex/'+from+"?error="+error)
+				}else{	
+					res.redirect('dex/'+from)
+				}
+		})
+			}else{
+				res.redirect("dex/"+from+"?error=Not Enougth Ether Balance")
 			}
 		})
+	
 	}else{
 		res.redirect("/?error=bad url parameter")
 	}
@@ -291,14 +313,35 @@ app.post('/buyFromAddress', function(req, res) {
 	var from = req.session.wallet
 	var to = req.body.addressb3
 	var amount = req.body.amountb3
-	if(from && amount){
-		hodl.buyFromAddress(from, to, amount, function(results, error){
-			if (error){
-				res.redirect('dex/'+from+"?error="+error)
-			}else{	
-				res.redirect('dex/'+from)
+	var units = req.body.conversion3
+	console.log("units: "+units)
+	if(from && amount && to){
+		hodl.getAddr(from, function(addr, errAddr){
+			if (errAddr){
+				res.redirect("dex/"+from+"?error= "+errAddr);
+			}else{
+		hodl.getBalance(from, function(bal, errbal){
+			if (errbal){
+				res.redirect('dex/'+from+"?error="+errbal)
 			}
-		})
+			console.log("bal: "+bal)
+			console.log("required: "+((amount)*(10**units)))
+			if(bal >= ((amount)*(10**units))){
+				hodl.buyFromAddress(from, to, amount, function(results, error){
+					if (error){
+						res.redirect('dex/'+from+"?error="+error)
+					}else{	
+						res.redirect('dex/'+from)
+					}
+				})
+						
+			}else{
+				res.redirect("dex/"+from+"?error=Not Enougth Ether Balance")
+			}
+			})
+		}
+			})
+		
 	}else{
 		res.redirect("/?error=bad url parameter")
 	}
@@ -308,7 +351,20 @@ app.post('/buyFromAsk', function(req, res) {
 	var from = req.session.wallet
 	var to = req.body.addressb4
 	var amount = req.body.amountb4
-	if(from && amount){
+	var units = req.body.conversion3
+	console.log("units: "+units)
+	if(from && amount && to){
+		hodl.getAddr(from, function(addr, errAddr){
+			if (errAddr){
+				res.redirect("dex/"+from+"?error= "+errAddr);
+			}else{
+		hodl.getBalance(from, function(bal, errbal){
+			if (errbal){
+				res.redirect('dex/'+from+"?error="+errbal)
+			}
+			console.log("bal: "+bal)
+			console.log("required: "+((amount)*(10**units)))
+			if(bal >= ((amount)*(10**units))){
 		hodl.buyFromAddress(from, to, amount, function(results, error){
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
@@ -316,6 +372,12 @@ app.post('/buyFromAsk', function(req, res) {
 				res.redirect('dex/'+from)
 			}
 		})
+			}else{
+				res.redirect("dex/"+from+"?error=Not Enougth Ether Balance")
+			}
+			})
+		}
+			})
 	}else{
 		res.redirect("/?error=bad url parameter")
 	}
@@ -328,12 +390,25 @@ app.post('/buyFromAsk', function(req, res) {
 app.post('/buyFromPool', function(req, res) {
 	var from = req.session.wallet
 	var amount = req.body.amountp11
+	var units = req.body.conversion2
+	console.log("units: "+units)
 	if(from && amount){
+		hodl.getBalance(from, function(bal, errbal){
+			if (errbal){
+				res.redirect('dex/'+from+"?error="+errbal)
+			}
+			console.log("bal: "+bal)
+			console.log("required: "+((amount)*(10**units)))
+			if(bal >= ((amount)*(10**units))){
 		hodl.buyFromPool(from, amount, function(results, error){
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
 				res.redirect('dex/'+from)
+			}
+		})
+			}else{
+				res.redirect("dex/"+from+"?error=Not Enougth Ether Balance")
 			}
 		})
 	}else{
