@@ -242,13 +242,28 @@ app.post('/approveTransactionForAddress', function(req, res) {
 // generic buy function, autobuy , buy from reserve or create a bid
 app.post('/Buy', function(req, res) {
 	var from = req.session.wallet
+	console.log("wallet: "+from)
 	var amount = req.body.amountb1
+	console.log("amount: "+amount)
+	var units = req.body.conversion1
+	console.log("units: "+units)
 	if(from && amount){
-		hodl.Buy(from, amount, function(results, error){
-			if (error){
-				res.redirect('dex/'+from+"?error="+error)
-			}else{	
-				res.redirect('dex/'+from)
+		hodl.getBalance(from, function(bal, errbal){
+			if (errbal){
+				res.redirect('dex/'+from+"?error="+errbal)
+			}
+			console.log("bal: "+bal)
+			console.log("required: "+((amount)*(10**units)))
+			if(bal >= ((amount)*(10**units))){
+				hodl.Buy(from, amount, function(results, error){
+					if (error){
+						res.redirect('dex/'+from+"?error="+error)
+					}else{	
+						res.redirect('dex/'+from)
+					}
+				})
+			}else{
+				res.redirect("/?error=Not Enougth Ether Balance")
 			}
 		})
 	}else{

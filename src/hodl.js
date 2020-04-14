@@ -482,6 +482,13 @@ module.exports = {
 			}
 		})			
 		
-	}
-		
+	},
+	getBalance: function(from, cb){
+		web3.eth.getBalance(from, function(error, bal){
+			if (error){
+				return cb(null, error)
+			}
+			return cb(bal, null)
+		})
+	}		
 }

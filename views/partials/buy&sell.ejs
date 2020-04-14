@@ -89,13 +89,20 @@
                                                     <div class="tab-pane fade in active" id="buy1">
 
 														<form action="/Buy" method="post" >
+															<label for="conversion1" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="conversion1">
+																<option value="0">Ether</option>
+																<option value="9">Gwei</option>
+																<option value="18">Wei</option>
+															</select>
                                                             <div class="form-group">
+
                                                                 <label for="amountb1" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amountb1" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amountb1" name="amountb1" placeholder="Enter Amount (ETH)">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block"><small>This will launch a trade order, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
+																	<span class="help-block"><small>This will launch a trade order buying HODL with the ethereum sent, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
                                                                 </label>
                                                             </div>
                                                             <button type="submit" class="btn btn-block btn-primary">Buy</button>
@@ -104,7 +111,14 @@
                                                     <div class="tab-pane fade" id="buy2">
 
 														<form action="/buyFromReserve" method="post" >
+															<label for="conversion2" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="conversion2">
+																<option value="0">Ether</option>
+																<option value="9">Gwei</option>
+																<option value="18">Wei</option>
+															</select>
                                                             <div class="form-group">
+																<label for="amountb2" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountb2" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
@@ -117,6 +131,12 @@
                                                     </div>
                                                     <div class="tab-pane fade" id="buy3">
 														<form action="/buyFromAddress" method="post" >
+															<label for="conversion3" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="conversion3">
+																<option value="0">Ether</option>
+																<option value="9">Gwei</option>
+																<option value="18">Wei</option>
+															</select>
                                                             <div class="form-group">
                                                                 <label for="amountb3" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountb3" placeholder="Enter Desired Amount">
@@ -133,7 +153,12 @@
                                                     </div>
 
                                                     <div class="tab-pane fade" id="buy4">
-
+															<label for="conversion4" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="conversion4">
+																<option value="0">Ether</option>
+																<option value="9">Gwei</option>
+																<option value="18">Wei</option>
+															</select>
 														<form action="/buyFromAsk" method="post">
                                                             <div class="form-group">
                                                                 <label for="amountb4" class="form-label">Amount</label>
@@ -323,9 +348,15 @@
                                                     <div class="tab-pane fade in active" id="pool11">
 
 														<form action="/buyFromPool" method="post">
+															<label for="conversion5" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="conversion5">
+																<option value="0">Ether</option>
+																<option value="9">Gwei</option>
+																<option value="18">Wei</option>
+															</select>
                                                             <div class="form-group">
                                                                 <label for="amountp11" class="form-label">Ethereum Amount</label>
-                                                                <input type="number" class="form-control" id="amountp1" placeholder="Enter Ethereum to send">
+                                                                <input type="number" class="form-control" id="amountp1" name="amountp1" placeholder="Enter Ethereum to send">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
