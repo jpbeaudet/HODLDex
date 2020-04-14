@@ -240,9 +240,15 @@
                                                     <div class="tab-pane fade in active" id="sell1">
 
 														<form action="/sell" method="post">
+															<label for="hodlConversion1" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="hodlConversion1" name="hodlConversion1">
+																<option value="10">HODL</option>
+																<option value="5">Epsilon</option>
+																<option value="0">Iota</option>
+															</select>
                                                             <div class="form-group">
                                                                 <label for="amounts1" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amounts1" placeholder="Enter Desired Amount">
+                                                                <input type="number" class="form-control" id="amounts1" name="amounts1" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
@@ -255,6 +261,12 @@
                                                     <div class="tab-pane fade" id="sell2">
 
 														<form action="/sellToBid" method="post">
+															<label for="hodlConversion2" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="hodlConversion2" name="hodlConversion2">
+																<option value="10">HODL</option>
+																<option value="5">Epsilon</option>
+																<option value="0">Iota</option>
+															</select>
                                                             <div class="form-group">
                                                                 <label for="amounts2" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amounts2" name="amounts2" placeholder="Enter Desired Amount">
@@ -272,6 +284,12 @@
                                                     <div class="tab-pane fade" id="sell3">
 
 														<form action="/approveTransactionForAddress" method="post">
+															<label for="hodlConversion3" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="hodlConversion3" name="hodlConversion3">
+																<option value="10">HODL</option>
+																<option value="5">Epsilon</option>
+																<option value="0">Iota</option>
+															</select>
                                                             <div class="form-group">
                                                                 <label for="amounts3" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amounts3" name="amounts3" placeholder="Enter Desired Amount">
@@ -371,6 +389,12 @@
                                                     <div class="tab-pane fade in " id="pool1">
 
 														<form action="/sellInPool" method="post">
+															<label for="hodlConversion4" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="hodlConversion4" name="hodlConversion4">
+																<option value="10">HODL</option>
+																<option value="5">Epsilon</option>
+																<option value="0">Iota</option>
+															</select>
                                                             <div class="form-group">
                                                                 <label for="amountp1" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountp1" name="amountp1" placeholder="Enter Desired Amount">

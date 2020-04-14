@@ -490,5 +490,14 @@ module.exports = {
 			}
 			return cb(bal, null)
 		})
+	},
+	getBalanceOf: function(of, cb){
+		MyContract.methods.balanceOf(of).call( async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})
 	}		
 }

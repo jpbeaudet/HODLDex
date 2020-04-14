@@ -191,12 +191,24 @@ app.get('/support', function(req, res) {
 app.post('/sell', function(req, res) {
 	var from = req.session.wallet
 	var amount = req.body.amounts1
+	var units = req.body.hodlConversion1
+	console.log("units: "+units)
 	if(from && amount){
-		hodl.sell(from, amount, function(results, error){
-			if (error){
-				res.redirect('dex/'+from+"?error="+error)
-			}else{	
-				res.redirect('dex/'+from)
+		hodl.getBalanceOf(from, function(bal, errBal){
+			if (errBal){
+				res.redirect('dex/'+from+"?error="+errBal)
+			}
+			console.log("required: "+(amount * (10**units) ))
+			if((amount * (10**units) )<= bal){
+				hodl.sell(from, amount, function(results, error){
+					if (error){
+						res.redirect('dex/'+from+"?error="+error)
+					}else{	
+						res.redirect('dex/'+from)
+					}
+				})
+			}else{
+				res.redirect('dex/'+from+"?error=HODL Balance is too low")
 			}
 		})
 	}else{
@@ -208,20 +220,31 @@ app.post('/sellToBid', function(req, res) {
 	var from = req.session.wallet
 	var to = req.body.address2
 	var amount = req.body.amounts2
-	console.log(from+to+amount)
+	var units = req.body.hodlConversion2
+	console.log("units: "+units)
 	if(from && to && amount){
-		hodl.getAddr(from, function(addr, errAddr){
-			if (errAddr){
-				res.redirect("dex/"+from+"?error= "+errAddr);
-			}else{
-				hodl.sellToBid(from, to, amount, function(results, error){
-					if (error){
-						res.redirect('dex/'+from+"?error="+error)
-					}else{	
-						res.redirect('dex/'+from)
-					}
-				})
+		hodl.getBalanceOf(from, function(bal, errBal){
+			if (errBal){
+				res.redirect('dex/'+from+"?error="+errBal)
 			}
+			console.log("required: "+(amount * (10**units) ))
+			if((amount * (10**units) )<= bal){
+			hodl.getAddr(from, function(addr, errAddr){
+				if (errAddr){
+					res.redirect("dex/"+from+"?error= "+errAddr);
+				}else{
+					hodl.sellToBid(from, to, amount, function(results, error){
+						if (error){
+							res.redirect('dex/'+from+"?error="+error)
+						}else{	
+							res.redirect('dex/'+from)
+						}
+					})
+				}
+			})
+		}else{
+			res.redirect('dex/'+from+"?error=HODL Balance is too low")
+		}
 		})
 	}else{
 		res.redirect("/?error=bad url parameter")
@@ -230,15 +253,34 @@ app.post('/sellToBid', function(req, res) {
 // pre-approve transaction with address
 app.post('/approveTransactionForAddress', function(req, res) {
 	var from = req.session.wallet
-	var to = req.body.addressb3
+	var to = req.body.address3
 	var amount = req.body.amounts3
+	var units = req.body.hodlConversion3
+	console.log("var: "+from+to+amount)
+	console.log("units: "+units)
 	if(from && to && amount){
-		hodl.approveTransactionForAddress(from, to, amount, function(results, error){
-			if (error){
-				res.redirect('dex/'+from+"?error="+error)
-			}else{	
-				res.redirect('dex/'+from)
+		hodl.getBalanceOf(from, function(bal, errBal){
+			if (errBal){
+				res.redirect('dex/'+from+"?error="+errBal)
 			}
+			console.log("required: "+(amount * (10**units) ))
+			if((amount * (10**units) )<= bal){
+			hodl.getAddr(from, function(addr, errAddr){
+				if (errAddr){
+					res.redirect("dex/"+from+"?error= "+errAddr);
+				}else{
+					hodl.approveTransactionForAddress(from, to, amount, function(results, error){
+						if (error){
+							res.redirect('dex/'+from+"?error="+error)
+						}else{	
+							res.redirect('dex/'+from)
+						}
+					})
+				}
+			})
+		}else{
+			res.redirect('dex/'+from+"?error=HODL Balance is too low")
+		}
 		})
 	}else{
 		res.redirect("/?error=bad url parameter")
@@ -419,12 +461,25 @@ app.post('/buyFromPool', function(req, res) {
 app.post('/sellInPool', function(req, res) {
 	var from = req.session.wallet
 	var amount = req.body.amountp1
+	var units = req.body.hodlConversion4
+	console.log("var: "+from+amount)
+	console.log("units: "+units)
 	if(from && amount){
-		hodl.sellInPool(from, amount, function(results, error){
-			if (error){
-				res.redirect('dex/'+from+"?error="+error)
-			}else{	
-				res.redirect('dex/'+from)
+		hodl.getBalanceOf(from, function(bal, errBal){
+			if (errBal){
+				res.redirect('dex/'+from+"?error="+errBal)
+			}
+			console.log("required: "+(amount * (10**units) ))
+			if((amount * (10**units) )<= bal){
+				hodl.sellInPool(from, amount, function(results, error){
+					if (error){
+						res.redirect('dex/'+from+"?error="+error)
+					}else{	
+						res.redirect('dex/'+from)
+					}
+				})
+			}else{
+				res.redirect('dex/'+from+"?error=HODL Balance is too low")
 			}
 		})
 	}else{
