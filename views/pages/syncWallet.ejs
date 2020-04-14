@@ -1,0 +1,67 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class=" ">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+
+
+<!-- START CONTENT -->
+<section id="main-content" class=" ">
+<div class="wrapper main-wrapper row" style=''>
+            
+<!-- Metamask Warning (if metamask is not installed) start -->
+	<% include ../partials/metamask_warning %>
+<!-- Metamask Warning -->
+
+<!-- Browser Warning (if wrong browser) start -->
+	<% include ../partials/browser_warning %>
+<!-- Browser Warning -->
+
+
+ <div class='col-xs-12'>
+	<h1 class="title boldy mb-5 mt-15">HODL Explorer</h1>
+	<hr>
+</div>
+
+<!-- Preloader start -->
+	<% include ../partials/preloader %>
+<!-- Preloader end-->
+
+
+<!-- searchbar start -->
+	<% include ../partials/searchbar %>
+<!-- searchbar end -->         
+<!-- sync start -->
+	<% include ../partials/sync %>
+<!-- sync end --> 
+<!-- End .row -->
+</div>
+</section>
+</div>
+
+<div class="clearfix"></div>
+
+</div>
+</section>
+<!-- END CONTENT -->
+
+</div>
+<!-- END CONTAINER -->
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>
+

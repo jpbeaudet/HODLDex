@@ -41,7 +41,9 @@
                         </div>
                      </div>
                 </div>
-     
+ <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
+ <a href="/syncNew" class="btn btn-block btn-primary"> Synchronise a new wallet </a>
+                 </div>  
      
       <div aria-hidden="true" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
                                             <div class="modal-dialog">
@@ -86,14 +88,13 @@
                                                 <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
                                                     <div class="tab-pane fade in active" id="buy1">
 
-														<form>
+														<form action="/Buy" method="post" >
                                                             <div class="form-group">
                                                                 <label for="amountb1" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountb1" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">Wei needed: 7777</span>
 																	<span class="help-block"><small>This will launch a trade order, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
                                                                 </label>
                                                             </div>
@@ -102,14 +103,12 @@
                                                     </div>
                                                     <div class="tab-pane fade" id="buy2">
 
-														<form>
+														<form action="/buyFromReserve" method="post" >
                                                             <div class="form-group">
-                                                                <label for="amountb2" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountb2" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">Wei needed: 7777</span>
 																	<span class="help-block"><small>This will launch a trade order from the reserve and will be resolved automatically. The Ethereum sent will be redistributed randomly to a current HODL owner, including you.</small></span>
                                                                 </label>
                                                             </div>
@@ -117,7 +116,7 @@
                                                         </form>
                                                     </div>
                                                     <div class="tab-pane fade" id="buy3">
-														<form>
+														<form action="/buyFromAddress" method="post" >
                                                             <div class="form-group">
                                                                 <label for="amountb3" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountb3" placeholder="Enter Desired Amount">
@@ -126,7 +125,6 @@
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">Wei needed: 7777</span>
 																	<span class="help-block"><small> This will launch a buy order to a specific address. The address must have approved the transaction amount and your address or this will fail. </small></span>
                                                                 </label>
                                                             </div>
@@ -136,7 +134,7 @@
 
                                                     <div class="tab-pane fade" id="buy4">
 
-														<form>
+														<form action="/buyFromAsk" method="post">
                                                             <div class="form-group">
                                                                 <label for="amountb4" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountb4" placeholder="Enter Desired Amount">
@@ -145,7 +143,6 @@
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">Wei needed: 7777</span>
 																	<span class="help-block"><small> This will launch a buy order to a specific address associated with an ask. If the amount of Ether sent is lower or equal the ask with be bougth </small></span>
                                                                 </label>
                                                             </div>
@@ -155,14 +152,9 @@
                                                     
                                                     <div class="tab-pane fade" id="buy5">
 
-														<form>
-                                                            <div class="form-group">
-                                                                <label for="addressb5" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="addressb5" placeholder="Enter Address" pattern="/^(0x)?[0-9a-f]{40}$/">
-                                                            </div>
+														<form action="/withdrawRemainderEthereum" method="post">
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">Remainder Balance: 0.000000007777</span>
 																	<span class="help-block"><small> This will trigger a withdraw from any remainder Ethereum you have in the smart contract as dust from a previous transaction. </small></span>
                                                                 </label>
                                                             </div>
@@ -221,14 +213,13 @@
                                                 <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
                                                     <div class="tab-pane fade in active" id="sell1">
 
-														<form>
+														<form action="/sell" method="post">
                                                             <div class="form-group">
                                                                 <label for="amounts1" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amounts1" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">ETH Value:  7777</span>
 																	<span class="help-block"><small>This will launch a trade order, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
                                                                 </label>
                                                             </div>
@@ -237,16 +228,15 @@
                                                     </div>
                                                     <div class="tab-pane fade" id="sell2">
 
-														<form>
+														<form action="/sellToBid" method="post">
                                                             <div class="form-group">
                                                                 <label for="amounts2" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amounts2" placeholder="Enter Desired Amount">
                                                                 <label for="addressb2" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="addresss2" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
+                                                                <input type="text" class="form-control" id="address2" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">ETH Value:  7777</span>
 																	<span class="help-block"><small>This will launch a trade order, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
                                                                 </label>
                                                             </div>
@@ -255,16 +245,15 @@
                                                     </div>
                                                     <div class="tab-pane fade" id="sell3">
 
-														<form>
+														<form action="/approveTransactionForAddress" method="post">
                                                             <div class="form-group">
                                                                 <label for="amounts3" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amounts3" placeholder="Enter Desired Amount">
 																<label for="addressb3" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="addresss3" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
+                                                                <input type="text" class="form-control" id="address3" placeholder="Enter Ethereum Address" pattern="/^(0x)?[0-9a-f]{40}$/">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">ETH Value: 7777</span>
 																	<span class="help-block"><small>This will launch a trade order, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
                                                                 </label>
                                                             </div>
@@ -304,6 +293,11 @@
                                             <div class="row tabs-area">
                                                 <ul class="nav nav-tabs vertical col-xs-4 col-md-4 left-aligned primary">
                                                     <li class="active">
+                                                        <a href="#pool11" data-toggle="tab">
+                                                            <i class="fa fa-money"></i> Buy current Pool
+                                                        </a>
+                                                    </li>
+                                                    <li >
                                                         <a href="#pool1" data-toggle="tab">
                                                             <i class="fa fa-money"></i> Sell to Pool
                                                         </a>
@@ -326,32 +320,46 @@
                                                 </ul>
 
                                                 <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
-                                                    <div class="tab-pane fade in active" id="pool1">
+                                                    <div class="tab-pane fade in active" id="pool11">
 
-														<form>
+														<form action="/buyFromPool" method="post">
+                                                            <div class="form-group">
+                                                                <label for="amountp11" class="form-label">Ethereum Amount</label>
+                                                                <input type="number" class="form-control" id="amountp1" placeholder="Enter Ethereum to send">
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+																	<span class="help-block"><small>This will buy the current HODL pool. The Pool can only be bougth as a whole.</small></span>
+                                                                </label>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-block btn-primary">Buy current HODL Pool</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="tab-pane fade in " id="pool1">
+
+														<form action="/sellInPool" method="post">
                                                             <div class="form-group">
                                                                 <label for="amountp1" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountp1" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">ETH Value:  7777</span>
 																	<span class="help-block"><small>This will sell HODL to the current pool. You can withdraw your token as long as the pool is not sold. Afterward you can withdraw your Ether.</small></span>
                                                                 </label>
                                                             </div>
                                                             <button type="submit" class="btn btn-block btn-primary">Sell To Pool</button>
                                                         </form>
                                                     </div>
+
                                                     <div class="tab-pane fade" id="pool2">
 
-														<form>
+														<form action="/removeTokensFromPool" method="post">
                                                             <div class="form-group">
                                                                 <label for="amountp2" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountp2" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">ETH Value:  7777</span>
 																	<span class="help-block"><small>This will withdraw HODL from the current pool if this address have a balance. </small></span>
                                                                 </label>
                                                             </div>
@@ -360,14 +368,9 @@
                                                     </div>
                                                     <div class="tab-pane fade" id="pool3">
 
-														<form>
-                                                            <div class="form-group">
-                                                                <label for="amountp3" class="form-label">Amount</label>
-                                                                <input type="number" class="form-control" id="amountp3" placeholder="Enter Desired Amount">
-                                                            </div>
+														<form action="/withdrawEthFromPoolSale" method="post">
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">ETH Value:  7777</span>
 																	<span class="help-block"><small>This will withdraw Ether earings from the current pool if this address have a balance. </small></span>
                                                                 </label>
                                                             </div>
@@ -377,14 +380,9 @@
 
                                                     <div class="tab-pane fade" id="pool4">
 
-														<form>
-                                                            <div class="form-group">
-                                                                <label for="addressp4" class="form-label">Address</label>
-                                                                <input type="text" class="form-control" id="addressp4" placeholder="Enter Address" pattern="/^(0x)?[0-9a-f]{40}$/">
-                                                            </div>
+														<form action="/withdrawRemainderEthereum" method="post">
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block">Remainder Balance: 0.000000007777</span>
 																	<span class="help-block"><small> This will trigger a withdraw from any remainder Ethereum you have in the smart contract as dust from a previous transaction. </small></span>
                                                                 </label>
                                                             </div>

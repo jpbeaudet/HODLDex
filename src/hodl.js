@@ -359,5 +359,129 @@ module.exports = {
 		}catch(error){ 	
 			return cb(null, error)
 		} 	
+	},
+	// sell section
+	sell : function(from, amount, cb){
+		MyContract.methods.sell(amount).call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	sellToBid : function(from, to, amount, cb){
+		MyContract.methods.sellToBid(to, amount).call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	// buy section
+	Buy : function(from, amount, cb){
+		MyContract.methods.Buy().call({from: from, value: amount}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	buyFromReserve : function(from, amount, cb){
+		MyContract.methods.buyFromReserve().call({from: from, value: amount}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	buyFromAddress : function(from, to, amount, cb){
+		MyContract.methods.buyFromAddress(to).call({from: from, value: amount}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	buyFromAsk : function(from, to, amount, cb){
+		MyContract.methods.buyFromAsk(to).call({from: from, value: amount}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	// pool section
+	buyFromPool : function(from, to, amount, cb){
+		MyContract.methods.buyFromPool().call({from: from, value: amount}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	sellInPool : function(from, amount, cb){
+		MyContract.methods.sellTInPool(amount).call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	removeTokensFromPool : function(from, amount, cb){
+		MyContract.methods.removeTokensFromPool(amount).call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	withdrawEthFromPoolSale : function(from, cb){
+		MyContract.methods.removeTokensFromPool().call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	withdrawRemainderEthereum : function(from, cb){
+		MyContract.methods.withdrawRemainderEthereum().call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
+	},
+	approveTransactionForAddress : function(from, to, amount, cb){
+		MyContract.methods.approveTransactionForAddress(to, amount).call({from: from}, async(error, result)=>{
+			if(error){
+				return cb(null, error)
+			}else{
+				return cb(result, null)
+			}
+		})			
+		
 	}
+		
 }

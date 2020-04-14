@@ -76,9 +76,45 @@ app.get('/address/:address', function(req, res) {
 
 // trade 
 app.get('/trade', function(req, res) {
-    res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");
+		var data = {title: "HODL | Synchronize Your Wallet", error:null}
+			hodl.public(function(results){
+				data.public = results
+				console.log(JSON.stringify(data))
+				if( req.session.wallet){
+					res.redirect('dex/'+req.session.wallet);
+				}else{
+					res.render('pages/syncWallet', data);
+				}
+			})
+    //res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");    
 });
-
+// trade 
+app.get('/syncNew', function(req, res) {
+		var data = {title: "HODL | Synchronize Your Wallet", error:null}
+			hodl.public(function(results){
+				data.public = results
+				console.log(JSON.stringify(data))
+				res.render('pages/syncWallet', data);
+			})
+    //res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");    
+});
+// trade 
+app.post('/sync', function(req, res) {
+		var data = {title: "HODL | Synchronize Your Wallet", error:null}
+			var from = req.body.wallet
+			console.log(from)
+			req.session.wallet =  req.body.wallet
+			hodl.public(function(results){
+				data.public = results
+				console.log(JSON.stringify(data))
+				if( from){
+					res.redirect('dex/'+from);
+				}else{
+					res.render('pages/syncWallet', data);
+				}
+			})
+    //res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");    
+});
 // search 
 app.post('/search', function(req, res) {
 	try{
@@ -136,6 +172,215 @@ app.get('/support', function(req, res) {
 	})
 });
 
+////////////////////////////
+//// trade functions
+////////////////////////////
+
+
+///////////////
+///// Sell section
+////////////////////////////
+// sell hodl
+app.post('/sell', function(req, res) {
+	var from = req.query.from
+	var amount = req.body.amounts1
+	if(from && amount){
+		hodl.sell(from, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+// sell hodl to bid
+app.post('/sellToBid', function(req, res) {
+	var from = req.query.from
+	var to = req.body.addresss2
+	var amount = req.body.amounts2
+	if(from && to && amount){
+		hodl.sellToBid(from, to, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+// pre-approve transaction with address
+app.post('/approveTransactionForAddress', function(req, res) {
+	var from = req.query.from
+	var to = req.body.addressb3
+	var amount = req.body.amounts3
+	if(from && to && amount){
+		hodl.approveTransactionForAddress(from, to, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+///////////////
+///// Buy section
+////////////////////////////
+// generic buy function, autobuy , buy from reserve or create a bid
+app.post('/Buy', function(req, res) {
+	var from = req.query.from
+	var amount = req.body.amountb1
+	if(from && amount){
+		hodl.Buy(from, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+// buy from reserve only
+app.post('/buyFromReserve', function(req, res) {
+	var from = req.query.from
+	var amount = req.body.amountb2
+	if(from && amount){
+		hodl.buyFromReserve(from, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+// buy from address
+app.post('/buyFromAddress', function(req, res) {
+	var from = req.query.from
+	var to = req.body.addressb3
+	var amount = req.body.amountb3
+	if(from && amount){
+		hodl.buyFromAddress(from, to, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+// buy from ask
+app.post('/buyFromAsk', function(req, res) {
+	var from = req.query.from
+	var to = req.body.addressb4
+	var amount = req.body.amountb4
+	if(from && amount){
+		hodl.buyFromAddress(from, to, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+
+///////////////
+///// Pool section
+////////////////////////////
+// buy from pool
+app.post('/buyFromPool', function(req, res) {
+	var from = req.query.from
+	var amount = req.body.amountp11
+	if(from && amount){
+		hodl.buyFromPool(from, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+// sell hodl to current pool
+app.post('/sellInPool', function(req, res) {
+	var from = req.query.from
+	var amount = req.body.amountp1
+	if(from && amount){
+		hodl.sellInPool(from, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+//  withdraw hodl from the pool
+app.post('/removeTokensFromPool', function(req, res) {
+	var from = req.query.from
+	var amount = req.body.amountp2
+	if(from && amount){
+		hodl.removeTokensFromPool(from, amount, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+//  withdraw ethereum from the pool
+app.post('/withdrawEthFromPoolSale', function(req, res) {
+	var from = req.query.from
+	if(from){
+		hodl.withdrawEthFromPoolSale(from, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
+//  withdraw ethereum 
+app.post('/withdrawRemainderEthereum', function(req, res) {
+	var from = req.query.from
+	if(from){
+		hodl.withdrawRemainderEthereum(from, function(results, error){
+			if (error){
+				res.redirect('dex/'+from+"?error="+error)
+			}else{	
+				res.redirect('dex/'+from)
+			}
+		})
+	}else{
+		res.redirect("/?error=bad url parameter")
+	}
+});
 // error handler for bad request
 app.get('*', function(req, res){
 	var error = "Requested page does not exists"

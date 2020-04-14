@@ -30,7 +30,7 @@
 
     <!-- CORE TEMPLATE JS - START -->
     <script src="../js/scripts.js"></script>
-    <!-- END CORE TEMPLATE JS - END --><script src="web3.min.js"></script>
+    <!-- END CORE TEMPLATE JS - END -->
 
 
 <script type="text/javascript">
@@ -46,16 +46,20 @@
 
     	console.log(web3.currentProvider);
 
-       if (web3.currentProvider.isMetaMask === true) {
-        console.log("metamask");
+       if (web3.currentProvider.isMetaMask === true || web3.currentProvider.isMist ) {
+        console.log("metamask or mist");
         window.ethereum.enable()
 			$('#metawarning').hide("fast")
+			console.log(web3.eth.accounts[0])
+			$('#wallet').val(web3.eth.accounts[0])
+
         } else {
         console.log("not metamask");
             $('#metawarning').show( "fast" )
 
         }
     }
+    
 
 </script>
 <script type="text/javascript">
