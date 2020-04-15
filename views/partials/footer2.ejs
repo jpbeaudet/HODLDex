@@ -103,3 +103,65 @@ window.onload = function() {
 
 }
 </script>
+<script type="text/javascript">
+function commafy( num ) {
+    var str = num.toString().split('.');
+    if (str[0].length >= 5) {
+        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    if (str[1] && str[1].length >= 5) {
+        str[1] = str[1].replace(/(\d{3})/g, '$1');
+    }
+    return str.join('.');
+}
+
+	//manage eth unit selector
+	var unit_eth =0
+    $("#conversion_calculator").change(function(){
+        unit_eth = $("#conversion_calculator").children("option:selected").val();
+        $("#eth2hodl").val("0")
+        $("#hodl2eth").val("0")
+        console.log("ETH Calculator, Changed Units: " + unit_eth);
+    });
+
+	//manage eth unit selector
+	var unit_hodl =0
+    $("#hodlConversion_calculator").change(function(){
+        unit_hodl = $("#hodlConversion_calculator").children("option:selected").val();
+        console.log("HODL Calculator, Changed Units: " + unit_hodl );
+    });
+
+// eth 2hodl
+    var timeout;
+    var delay = 1500;   // 2 seconds
+	//var unit_eth = $("#conversion_calculator").children("option:selected").val()
+	$( "#eth2hodl" ).keyup(function() {
+	        if(timeout) {
+            clearTimeout(timeout);
+        }
+        $("#hodl2eth").val("0")
+        timeout = setTimeout(function() {
+
+			var amount = $( "#eth2hodl" ).val()
+			console.log(unit_eth)
+			console.log("#eth2hodl_"+(amount*(10**unit_eth)))
+			$("#hodl2eth").val(commafy(((amount / (10**unit_eth)) *(<%= public.ethPrice["USD"]%> / <%= public.currentPriceUSDCent%>)*(10**unit_hodl)).toFixed(10)))
+		}, delay);
+	});
+
+// hold to eth
+//var unit_hodl = $("#hodlConversion_calculator").children("option:selected").val()
+	$( "#hodl2eth" ).keyup(function() {
+	        if(timeout) {
+            clearTimeout(timeout);
+        }
+        $("#eth2hodl").val("0")
+        timeout = setTimeout(function() {
+
+			var amount = $( "#hodl2eth" ).val()
+			console.log(unit_hodl)
+			console.log("#eth2hodl_"+(amount/(10**unit_hodl)))
+			$("#eth2hodl").val(commafy((<%= public.getPriceOf %> * (amount/(10**unit_hodl))*(10**unit_eth)).toFixed(18) ))
+		}, delay);
+	});
+</script>

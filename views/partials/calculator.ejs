@@ -9,9 +9,15 @@
                                     <div class="col-lg-5">
                                         <div class="form-group">
                                             <label class="form-label">Ethereum</label>
-                                            <span class="desc">Enter amount in ETH</span>
+                                            <span class="desc">Enter amount in ETH</span><br>
+															<label for="conversion3" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="conversion_calculator" name="conversion_calculator">
+																<option value="0">Ether</option>
+																<option value="9">Gwei</option>
+																<option value="18">Wei</option>
+															</select>
                                             <div class="controls">
-                                                <input type="text" class="form-control" placeholder="0" id="field-1">
+                                                <input type="text" class="form-control" placeholder="0" id="eth2hodl" name="eth2hodl">
                                             </div>
                                         </div>
                                     </div>
@@ -28,14 +34,17 @@
                                     <div class="col-lg-5">
                                         <div class="form-group">
                                             <label class="form-label">HODL Equivalent</label>
-                                            <span class="desc">Enter amount in HODL Commodity</span>
+                                            <span class="desc">Enter amount in HODL Commodity</span><br>
+															<label for="hodlConversion3" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="hodlConversion_calculator" name="hodlConversion_calculator">
+																<option value="0">HODL</option>
+																<option value="5">Epsilon</option>
+																<option value="10">Iota</option>
+															</select>
                                             <div class="controls">
-                                                <input type="text" class="form-control" placeholder="0" id="field-1">
+                                                <input type="text" class="form-control" placeholder="0" id="hodl2eth" name="hodl2eth">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-8 col-lg-offset-2 col-md-12">
-                                        <button type="button" class="btn btn-primary btn-lg mt-20 has-gradient-to-right-bottom" style="width:100%">Calculate</button>
                                     </div>
                                 </div>
                             </div>

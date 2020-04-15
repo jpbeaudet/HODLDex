@@ -23,11 +23,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-//app.use(require('express-session')({
-  //  secret: 'HODLsecret',
-  //  resave: false,
-  //  saveUninitialized: false
-//}));
+
 var store = new MongoDBStore({
   uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
   collection: 'mySessions'
