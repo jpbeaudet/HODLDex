@@ -8,6 +8,8 @@
 
 // load the things we need
 var express = require('express');
+var session = require('express-session');
+var MongoDBStore = require('connect-mongodb-session')(session);;
 var app = express();
 var bodyParser = require('body-parser');
 var logger = require('morgan');
@@ -15,17 +17,39 @@ var path = require('path');
 var router = express.Router();
 var hodl = require("./src/hodl.js")
 var server = require('http').createServer(app);
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
+//app.use(require('express-session')({
+  //  secret: 'HODLsecret',
+  //  resave: false,
+  //  saveUninitialized: false
+//}));
+var store = new MongoDBStore({
+  uri: 'mongodb://localhost:27017/connect_mongodb_session_test',
+  collection: 'mySessions'
+});
+ 
+// Catch errors
+store.on('error', function(error) {
+  console.log(error);
+});
+ 
 app.use(require('express-session')({
-    secret: 'HODLsecret',
-    resave: false,
-    saveUninitialized: false
+  secret: 'This is a secret',
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+  },
+  store: store,
+  // Boilerplate options, see:
+  // * https://www.npmjs.com/package/express-session#resave
+  // * https://www.npmjs.com/package/express-session#saveuninitialized
+  resave: true,
+  saveUninitialized: true
 }));
-
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'data')));
 
