@@ -52,7 +52,9 @@ app.use(express.static(path.join(__dirname, 'data')));
 
 // index page 
 app.get('/', function(req, res) {
-	var data = {title: "HODL Explorer", error: req.query.error}
+	var error = req.query.error
+	var msg = req.query.msg
+	var data = {title: "HODL Explorer", error: error, msg: msg}
 	hodl.public(function(results){
 		console.log(JSON.stringify(results))
 		data.public = results
@@ -62,7 +64,9 @@ app.get('/', function(req, res) {
 
 // explorer tx page 
 app.get('/tx/:txid', function(req, res) {
-	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details", error:null}
+	var error = req.query.error
+	var msg = req.query.msg
+	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details", error:error, msg:msg}
 	hodl.public(function(results){
 		console.log(JSON.stringify(results))
 		data.public = results
@@ -72,7 +76,9 @@ app.get('/tx/:txid', function(req, res) {
 
 // explorer addresses page 
 app.get('/address/:address', function(req, res) {
-	var data = {title: "HODL Explorer | Address Details", error:null}
+	var error = req.query.error
+	var msg = req.query.msg
+	var data = {title: "HODL Explorer | Address Details", error:error, msg: msg}
 	try{
 		hodl.byAddress(req.params.address, function(adddress_details, err){
 			data.balanceOf = adddress_details.balanceOf ||0;
@@ -96,7 +102,9 @@ app.get('/address/:address', function(req, res) {
 
 // trade 
 app.get('/trade', function(req, res) {
-		var data = {title: "HODL | Synchronize Your Wallet", error:null}
+	var error = req.query.error
+	var msg = req.query.msg
+		var data = {title: "HODL | Synchronize Your Wallet", error:error,msg:msg}
 			hodl.public(function(results){
 				data.public = results
 				console.log(JSON.stringify(data))
@@ -110,7 +118,9 @@ app.get('/trade', function(req, res) {
 });
 // trade 
 app.get('/syncNew', function(req, res) {
-		var data = {title: "HODL | Synchronize Your Wallet", error:null}
+	var error = req.query.error
+	var msg = req.query.msg
+		var data = {title: "HODL | Synchronize Your Wallet", error:error, msg: msg}
 			hodl.public(function(results){
 				data.public = results
 				console.log(JSON.stringify(data))
@@ -120,7 +130,9 @@ app.get('/syncNew', function(req, res) {
 });
 // trade 
 app.post('/sync', function(req, res) {
-		var data = {title: "HODL | Synchronize Your Wallet", error:null}
+	var error = req.query.error
+	var msg = req.query.msg
+		var data = {title: "HODL | Synchronize Your Wallet", error:error, msg:msg}
 			var from = req.body.wallet
 			console.log(from)
 			hodl.getAddr(from, function(addr, error){
@@ -167,7 +179,8 @@ app.post('/search', function(req, res) {
 // load trading platform for address
 app.get('/dex/:address', function(req, res) {
 	var error = req.query.error
-	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell", error:error}
+	var msg = req.query.msg
+	var data = {address: req.params.address, title: "HODL Trade | Buy & Sell", error:error, msg:msg}
 	try{
 		hodl.byAddress(req.params.address, function(adddress_details, err){
 			data.balanceOf = adddress_details.balanceOf ||0;
@@ -192,7 +205,9 @@ app.get('/dex/:address', function(req, res) {
 
 //  support 
 app.get('/support', function(req, res) {
-	var data = {title: "HODL Support & Contribute", error:null}
+	var error = req.query.error
+	var msg = req.query.msg
+	var data = {title: "HODL Support & Contribute", error:error, msg:msg }
 	hodl.public(function(results){
 		data.public = results
 		res.render('pages/support', data);
@@ -224,7 +239,7 @@ app.post('/sell', function(req, res) {
 					if (error){
 						res.redirect('dex/'+from+"?error="+error)
 					}else{	
-						res.redirect('dex/'+from)
+						res.redirect('dex/'+from+"?msg=Sell HODL Successful")
 					}
 				})
 			}else{
@@ -257,7 +272,7 @@ app.post('/sellToBid', function(req, res) {
 						if (error){
 							res.redirect('dex/'+from+"?error="+error)
 						}else{	
-							res.redirect('dex/'+from)
+							res.redirect('dex/'+from+"?msg=Sell To Bid Successful")
 						}
 					})
 				}
@@ -293,7 +308,7 @@ app.post('/approveTransactionForAddress', function(req, res) {
 						if (error){
 							res.redirect('dex/'+from+"?error="+error)
 						}else{	
-							res.redirect('dex/'+from)
+							res.redirect('dex/'+from+"?msg=Approve Transaction For Address Successful")
 						}
 					})
 				}
@@ -314,7 +329,7 @@ app.post('/CancelAsk', function(req, res) {
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
-				res.redirect('dex/'+from)
+				res.redirect('dex/'+from+"?msg=Cancel Ask Successful")
 			}
 		})
 	}else{
@@ -344,7 +359,7 @@ app.post('/Buy', function(req, res) {
 					if (error){
 						res.redirect('dex/'+from+"?error="+error)
 					}else{	
-						res.redirect('dex/'+from)
+						res.redirect('dex/'+from+"?msg=Buy HODL Successful")
 					}
 				})
 			}else{
@@ -373,7 +388,7 @@ app.post('/buyFromReserve', function(req, res) {
 				if (error){
 					res.redirect('dex/'+from+"?error="+error)
 				}else{	
-					res.redirect('dex/'+from)
+					res.redirect('dex/'+from+"?msg=Buy From Reserve Successful")
 				}
 		})
 			}else{
@@ -408,7 +423,7 @@ app.post('/buyFromAddress', function(req, res) {
 					if (error){
 						res.redirect('dex/'+from+"?error="+error)
 					}else{	
-						res.redirect('dex/'+from)
+						res.redirect('dex/'+from+"?msg=Buy From Address Successful")
 					}
 				})
 						
@@ -446,7 +461,7 @@ app.post('/buyFromAsk', function(req, res) {
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
-				res.redirect('dex/'+from)
+				res.redirect('dex/'+from+"?msg=Buy From Ask Successful")
 			}
 		})
 			}else{
@@ -468,7 +483,7 @@ app.post('/CancelBid', function(req, res) {
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
-				res.redirect('dex/'+from)
+				res.redirect('dex/'+from+"?msg=Cancel Bid Successful")
 			}
 		})
 	}else{
@@ -497,7 +512,7 @@ app.post('/buyFromPool', function(req, res) {
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
-				res.redirect('dex/'+from)
+				res.redirect('dex/'+from+"?msg=Buy HODL In Pool Successful")
 			}
 		})
 			}else{
@@ -526,7 +541,7 @@ app.post('/sellInPool', function(req, res) {
 					if (error){
 						res.redirect('dex/'+from+"?error="+error)
 					}else{	
-						res.redirect('dex/'+from)
+						res.redirect('dex/'+from+"?msg=Sell HODL In Pool Successful")
 					}
 				})
 			}else{
@@ -546,7 +561,7 @@ app.post('/removeTokensFromPool', function(req, res) {
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
-				res.redirect('dex/'+from)
+				res.redirect('dex/'+from+"?msg=Remove Tokens From Pool Successful")
 			}
 		})
 	}else{
@@ -561,7 +576,7 @@ app.post('/withdrawEthFromPoolSale', function(req, res) {
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
-				res.redirect('dex/'+from)
+				res.redirect('dex/'+from+"?msg=Withdraw Ethereum From Poool Sale Successful")
 			}
 		})
 	}else{
@@ -576,7 +591,7 @@ app.post('/withdrawRemainderEthereum', function(req, res) {
 			if (error){
 				res.redirect('dex/'+from+"?error="+error)
 			}else{	
-				res.redirect('dex/'+from)
+				res.redirect('dex/'+from+"?msg=Withdraw Remainder Ethereum Successful")
 			}
 		})
 	}else{
