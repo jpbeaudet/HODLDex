@@ -23,7 +23,8 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                 <% for(var i=0; i < public.events.length ; i++) {%>
+                                                 <% for(var i=(public.events.length-1); i >= 0 ; i--) {%>
+                                                 <% if (i >= (public.events.length-26)) { %>
                                                  <% if (public.events[i].event == "Trade") { %>
                                                 <tr>
                                                     <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.from%>" target="_blank"><%= public.events[i].returnValues.from%></a></small><br><small class="text-muted">To: <a href=""https://etherscan.io/address/<%= public.events[i].returnValues.to%>" target="_blank"> <%= public.events[i].returnValues.to%></a></small></td>
@@ -106,7 +107,7 @@
                                                 <% } %>                                      
                                                 <% } %>
                                       
-                                              
+                                               <% } %>
                                                 
 
                                             </tbody>

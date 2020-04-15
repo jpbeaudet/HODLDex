@@ -25,14 +25,86 @@
                                             <tbody>
                                                  <% for(var i=0; i < public.events.length ; i++) {%>
 													 <% if (public.events[i].transactionHash ==  txid) { %>
-													<tr>
-														<td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.from%>" target="_blank"><%= public.events[i].returnValues.from%></a></small><br><small class="text-muted">To: <a href=""https://etherscan.io/address/<%= public.events[i].returnValues.to%>" target="_blank"> <%= public.events[i].returnValues.to%></a></small></td>
-														<td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
-														<td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
-														<td><small class="text-muted"><%= public.timestamp[i]%></small></td>
-														<td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
-														<td class="green-text boldy"><%= public.events[i].returnValues.value%></td>
-													</tr>
+ <% if (public.events[i].event == "Trade") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.from%>" target="_blank"><%= public.events[i].returnValues.from%></a></small><br><small class="text-muted">To: <a href=""https://etherscan.io/address/<%= public.events[i].returnValues.to%>" target="_blank"> <%= public.events[i].returnValues.to%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted">Block: <a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> BlockSig: <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.value%><small class="text-muted"> NewPrice: <%=(public.events[i].returnValues.newPrice/10000)%> USD</small></td>
+                                                </tr>
+                                                <% } %>
+                                                 <% if (public.events[i].event == "Bid") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.from%>" target="_blank"><%= public.events[i].returnValues.from%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.value%></td>
+                                                </tr>
+                                                <% } %>
+                                                  <% if (public.events[i].event == "Ask") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.from%>" target="_blank"><%= public.events[i].returnValues.from%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.value%></td>
+                                                </tr>
+                                                <% } %>   
+                                                  <% if (public.events[i].event == "SellingInPool") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.from%>" target="_blank"><%= public.events[i].returnValues.from%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.tokens%><small class="text-muted"> NewPrice: <%=(public.events[i].returnValues.price/10000)%> USD</small></td>
+                                                </tr>
+                                                <% } %>    
+                                                  <% if (public.events[i].event == "BoughtPool") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.who%>" target="_blank"><%= public.events[i].returnValues.who%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.tokens%></td>
+                                                </tr>
+                                                <% } %>
+                                                  <% if (public.events[i].event == "RemovedTokensFromPool") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.who%>" target="_blank"><%= public.events[i].returnValues.who%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.tokens%></td>
+                                                </tr>
+                                                <% } %> 
+                                                  <% if (public.events[i].event == "RetreivedFundsFromPoolSell") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.who%>" target="_blank"><%= public.events[i].returnValues.who%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.amount%></td>
+                                                </tr>
+                                                <% } %>  
+                                                  <% if (public.events[i].event == "WithdrewRemainder") { %>
+                                                <tr>
+                                                    <td><small class="text-muted">From: <a href="https://etherscan.io/address/<%= public.events[i].returnValues.who%>" target="_blank"><%= public.events[i].returnValues.who%></a></small></td>
+                                                    <td><small class="text-muted">txhash: <a href="https://etherscan.io/tx/<%= public.events[i].transactionHash%>" target="_blank"><%= public.events[i].transactionHash%></a></small><br><small class="text-muted">Tx Sig: <a href="https://etherscan.io/tx/<%= public.events[i].signature%>" target="_blank"><%= public.events[i].signature%></a></small></td>
+                                                    <td><small class="text-muted"><a href="https://etherscan.io/block/<%= public.events[i].blockNumber%>"  target="_blank"><%= public.events[i].blockNumber%></a><br><small class="text-muted"> <a href="https://etherscan.io/block/<%= public.events[i].blockHash%>"> <%= public.events[i].blockHash%></a></small></td>
+                                                    <td><small class="text-muted"><%= public.timestamp[i]%></small></td>
+                                                    <td><span class="badge  w-70 round-info"><%= public.events[i].event%></span></td>
+                                                    <td class="green-text boldy"><%= public.events[i].returnValues.amount%></td>
+                                                </tr>
+                                                <% } %>
 													<% } %>
                                                 <% } %>
                                             </tbody>
