@@ -26,6 +26,7 @@ console.log("POwered by Coin Gecko ")
 ////web3
 // Connect to a Infuria server over JSON-RPC
 var web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/94841089cf24457ebaab3d909f3558d6"));
+//var web3 = new Web3(new Web3.currentProvider);
 var input = {
   language: 'Solidity',
   sources: {

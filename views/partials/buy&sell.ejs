@@ -93,8 +93,7 @@
 
                                                 <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
                                                     <div class="tab-pane fade in active" id="buy1">
-
-														<form action="/Buy" method="post" >
+															
 															<label for="conversion1" class="form-label">Units</label>
 															<select class="form-control input-sm m-bot15" id="conversion1" name="conversion1">
 																<option value="18">Ether</option>
@@ -111,8 +110,8 @@
 																	<span class="help-block"><small>This will launch a trade order buying HODL with the ethereum sent, if a ask already exist and has enougth balance, it will buy automatically from it, if not, it will buy from the reserve. If the reserve is empy, it will create a bid order</small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Buy</button>
-                                                        </form>
+                                                            <button  id="amountbutton1" name="amountbutton1" class="btn btn-block btn-primary">Buy</button>
+                                                       
                                                     </div>
                                                     <div class="tab-pane fade" id="buy2">
 

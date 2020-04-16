@@ -34,7 +34,7 @@
 
 
 <script type="text/javascript">
-
+	var account;
 	web3 = window.web3;
 	console.log(web3);
 
@@ -43,14 +43,14 @@
         // Use Mist/MetaMask's provider
         web3 = new Web3(web3.currentProvider);
         window.web3 = new Web3(web3.currentProvider);
-
     	console.log(web3.currentProvider);
 
        if (web3.currentProvider.isMetaMask === true || web3.currentProvider.isMist ) {
         console.log("metamask or mist");
-        window.ethereum.enable()
+			//window.ethereum.enable()
 			$('#metawarning').hide("fast")
 			console.log(web3.eth.accounts[0])
+			account = web3.eth.accounts[0]
 			$('#wallet').val(web3.eth.accounts[0])
 
         } else {
@@ -62,6 +62,7 @@
     
 
 </script>
+<script src="/js/bundle.js"></script>
 <script type="text/javascript">
 
 // Opera 8.0+

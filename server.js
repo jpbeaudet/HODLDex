@@ -17,6 +17,7 @@ var path = require('path');
 var router = express.Router();
 var hodl = require("./src/hodl.js")
 var server = require('http').createServer(app);
+var browserify = require('browserify-middleware');
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -48,7 +49,9 @@ app.use(require('express-session')({
 }));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'data')));
+//provide a browserified file at a path
 
+app.get('/js/bundle.js', browserify(__dirname + '/src/index.js'));
 
 // index page 
 app.get('/', function(req, res) {
