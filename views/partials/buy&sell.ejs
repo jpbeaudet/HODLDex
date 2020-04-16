@@ -115,7 +115,7 @@
                                                     </div>
                                                     <div class="tab-pane fade" id="buy2">
 
-														<form action="/buyFromReserve" method="post" >
+														
 															<label for="conversion2" class="form-label">Units</label>
 															<select class="form-control input-sm m-bot15" id="conversion2" name="conversion2">
 																<option value="18">Ether</option>
@@ -131,11 +131,11 @@
 																	<span class="help-block"><small>This will launch a trade order from the reserve and will be resolved automatically. The Ethereum sent will be redistributed randomly to a current HODL owner, including you.</small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Buy From Reserve</button>
-                                                        </form>
+                                                            <button id="amountbutton2" name="amountbutton2" class="btn btn-block btn-primary">Buy From Reserve</button>
+                                                       
                                                     </div>
                                                     <div class="tab-pane fade" id="buy3">
-														<form action="/buyFromAddress" method="post" >
+														
 															<label for="conversion3" class="form-label">Units</label>
 															<select class="form-control input-sm m-bot15" id="conversion3" name="conversion3">
 																<option value="18">Ether</option>
@@ -147,14 +147,15 @@
                                                                 <input type="number" class="form-control" id="amountb3" name="amountb3" placeholder="Enter Desired Amount">
                                                                 <label for="addressb3" class="form-label">Address</label>
                                                                 <input type="text" class="form-control" id="addressb3" name="addressb3" placeholder="Enter Ethereum Address" pattern="^0x[a-fA-F0-9]{40}$">
+                                                                <span id="message1"></span>
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
 																	<span class="help-block"><small> This will launch a buy order to a specific address. The address must have approved the transaction amount and your address or this will fail. </small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Buy From Address </button>
-                                                        </form>
+                                                            <button id="amountbutton3" name="amountbutton3" class="btn btn-block btn-primary">Buy From Address </button>
+                                                       
                                                     </div>
 
                                                     <div class="tab-pane fade" id="buy4">

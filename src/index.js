@@ -867,10 +867,11 @@ function initContract (contract,account) {
 		MyContract.options.address = address
 		console.log(MyContract)
 
-////////////////jquery section within contract
-////////////////////////
+//////jquery section within contract//////////
+//////////////////////////////////////////////
 
 //// buy section ///////
+////////////////////////
 
 // buy()
 $( "#amountbutton1" ).click(function() {
@@ -890,32 +891,139 @@ $( "#amountbutton1" ).click(function() {
 		if(bal >= wei){
 			MyContract.methods.Buy().send( {from: account, value: wei},async(error, result)=>{
 				if(error){
-					console.log(JSON.stringify(error))
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
 				}
-				console.log(JSON.stringify(result))
-				
+				console.log(JSON.stringify(result))				
 			})
 			.then(function (txHash) {
 				console.log('Transaction sent')
 				console.log(txHash)
-				waitForTxToBeMined(txHash)
+				//waitForTxToBeMined(txHash)
 				// tx pending
-				window.location.href=window.location.href+"?msg=Transaction Pending: "+txHash
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Pending: "+txHash
 			})
 		.catch(console.error)
 		}else{
 			// not enougth balance
-			window.location.href=window.location.href+"?error=Not Enougth Ether Balance Balance: "+bal
+			var basePath = location.protocol + '//' + location.host + location.pathname
+			window.location.href= basePath+"?error=Not Enougth Ether Balance Balance: "+bal
 		}
 	})
 	}else{
 		//amount to 0 
-		window.location.href=window.location.href+"?error=Amount of Ether sent cannot be 0"
+		var basePath = location.protocol + '//' + location.host + location.pathname
+		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank"
 	}
-});  
-    
-}// end init contract
+});// end of buy()  
 
+// buyFromReserve()
+$( "#amountbutton2" ).click(function() {
+	console.log("click")
+	var amount = $("#amountb2").val()
+	console.log("amount: "+amount)
+	var units = $("#conversion2").val()
+	console.log("units: "+units)
+	var wei = (amount*(10**units))
+	console.log("wei: "+units)
+	if(amount && amount != 0){
+		web3.eth.getBalance(account, function(err, bal){
+			if (err){
+				console.log(err)
+			}
+		console.log("eth balance for: "+account+" is: "+bal)
+		if(bal >= wei){
+			MyContract.methods.buyFromReserve().send( {from: account, value: wei},async(error, result)=>{
+				if(error){
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
+				}
+				console.log(JSON.stringify(result))				
+			})
+			.then(function (txHash) {
+				console.log('Transaction sent')
+				console.log(txHash)
+				//waitForTxToBeMined(txHash)
+				// tx pending
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Pending: "+txHash
+			})
+		.catch(console.error)
+		}else{
+			// not enougth balance
+			var basePath = location.protocol + '//' + location.host + location.pathname
+			window.location.href= basePath+"?error=Not Enougth Ether Balance Balance: "+bal
+		}
+	})
+	}else{
+		//amount to 0 
+		var basePath = location.protocol + '//' + location.host + location.pathname
+		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank"
+	}	
+});// end of buyFromReserve() 
+
+// buyFromAddress()
+$( "#amountbutton3" ).click(function() {
+	console.log("click")
+	var amount = $("#amountb3").val()
+	console.log("amount: "+amount)
+	var units = $("#conversion3").val()
+	console.log("units: "+units)
+	var wei = (amount*(10**units))
+	console.log("wei: "+units) 
+	var to = $("#addressb3").val()
+	console.log("to: "+to)
+	if(amount && to && amount != 0){
+		$("#message1").html("<small>Enter A Valid Ethereum Address</small>")
+		// check if to is valid address
+		web3.eth.getBalance(to, function(errTo, addr){
+			if (errTo){
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= No a valid ethereum address"
+			}
+		web3.eth.getBalance(account, function(err, bal){
+			if (err){
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= No a valid ethereum address: "+err
+			}
+		console.log("eth balance for: "+account+" is: "+bal)
+		if(bal >= wei){
+			MyContract.methods.buyFromAddress(to).send( {from: account, value: wei},async(error, result)=>{
+				if(error){
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
+				}
+				console.log(JSON.stringify(result))				
+			})
+			.then(function (txHash) {
+				console.log('Transaction sent')
+				console.log(txHash)
+				//waitForTxToBeMined(txHash)
+				// tx pending
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Pending: "+txHash
+			})
+		.catch(function(error) {
+				console.error(error);
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= No a valid ethereum address: "+error
+		})
+		}else{
+			// not enougth balance
+			var basePath = location.protocol + '//' + location.host + location.pathname
+			window.location.href= basePath+"?error=Not Enougth Ether Balance Balance: "+bal
+		}
+	})
+	})
+	}else{
+		//amount to 0 
+		var basePath = location.protocol + '//' + location.host + location.pathname
+		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank"
+	}	
+});// end of buyFromReserve() 	
+
+}// end init contract
 	
 /////// test  & utils
 ///////////////////////////////
@@ -934,22 +1042,24 @@ function isLocked() {
    });
 }
 
-isLocked()
+
 async function waitForTxToBeMined (txHash) {
-  let txReceipt
-  while (!txReceipt) {
-    try {
-      txReceipt = await web3.eth.getTransactionReceipt(txHash)
-    } catch (err) {
-      console.log("err: "+JSON.stringify(err))
-    }
-  }
-   console.log("success: "+txReceipt)
-   // tx completed
-   window.location.href=window.location.href+"?msg=Transaction Completed: "+txReceipt
+	let txReceipt
+	while (!txReceipt) {
+		try {
+			txReceipt = await web3.eth.getTransactionReceipt(txHash)
+		} catch (err) {
+			console.log("err: "+err)
+			//window.location.href=window.location.href+"?error="+err
+		}
+	}
+	console.log("success: "+txReceipt)
+	// tx completed
+	window.location.href=window.location.href+"?msg=Transaction Completed: "+txReceipt
 }
 
 // main()
+isLocked()
 web3 = window.web3;
     if (typeof web3 !== 'undefined') {
 		
