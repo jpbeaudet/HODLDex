@@ -455,7 +455,7 @@ module.exports = {
 		
 	},
 	sellInPool : function(from, amount, cb){
-		MyContract.methods.sellTInPool(amount).call({from: from}, async(error, result)=>{
+		MyContract.methods.sellInPool(amount).call({from: from}, async(error, result)=>{
 			if(error){
 				return cb(null, error)
 			}else{
@@ -475,7 +475,7 @@ module.exports = {
 		
 	},
 	withdrawEthFromPoolSale : function(from, cb){
-		MyContract.methods.removeTokensFromPool().call({from: from}, async(error, result)=>{
+		MyContract.methods.withdrawEthFromPoolSale().call({from: from}, async(error, result)=>{
 			if(error){
 				return cb(null, error)
 			}else{

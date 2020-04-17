@@ -909,7 +909,7 @@ $( "#amountbutton1" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})
 		}else{
 			 //not enougth balance
@@ -960,7 +960,7 @@ $( "#amountbutton2" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})
 		}else{
 			// not enougth balance
@@ -1021,7 +1021,7 @@ $( "#amountbutton3" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})
 		}else{
 			// not enougth balance
@@ -1083,7 +1083,7 @@ $( "#amountbutton4" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})
 		}else{
 			// not enougth balance
@@ -1122,7 +1122,7 @@ $( "#amountbutton5" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})	
 });// withdrawRemainderEthereum()
 
@@ -1149,7 +1149,7 @@ $( "#amountbutton6" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})	
 });// cancelBid()
 
@@ -1192,7 +1192,7 @@ $( "#amountbutton7" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})
 		}else{
 			 //not enougth balance
@@ -1253,7 +1253,7 @@ $( "#amountbutton8" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})
 		}else{
 			// not enougth balance
@@ -1315,7 +1315,7 @@ $( "#amountbutton9" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})
 		}else{
 			// not enougth balance
@@ -1354,9 +1354,207 @@ $( "#amountbutton10" ).click(function() {
 		.catch(function(error) {
 				console.error(error);
 				var basePath = location.protocol + '//' + location.host + location.pathname
-				window.location.href=basePath+"?error= Refused by User: "+error
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
 		})	
 });// cancelAsk()
+
+//// pool section ///////
+///////////////////////
+
+// buyFromPool()
+$( "#amountbutton11" ).click(function() {
+	console.log("click")
+	var amount = $("#amountp11").val()
+	console.log("amount: "+amount)
+	var units = $("#conversion5").val()
+	console.log("units: "+units)
+	var wei = (amount*(10**units))
+	console.log("wei: "+units)
+	if(amount && amount != 0){
+		web3.eth.getBalance(account, function(err, bal){
+			if (err){
+				console.log(err)
+			}
+		console.log("eth balance for: "+account+" is: "+bal)
+		if(bal >= wei){
+			$('#myModalPool').modal('toggle');
+			document.getElementById("loader").style.display = "block";
+			MyContract.methods.buyFromPool().send( {from: account, value: wei},async(error, result)=>{
+				if(error){
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
+				}
+				console.log(JSON.stringify(result))				
+			})
+			.then(function (txHash) {
+				console.log('Transaction sent')
+				console.log(txHash)
+				//waitForTxToBeMined(txHash)
+				// tx pending
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Success: "+txHash
+			})
+		.catch(function(error) {
+				console.error(error);
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
+		})
+		}else{
+			 //not enougth balance
+			var basePath = location.protocol + '//' + location.host + location.pathname
+			window.location.href= basePath+"?error=Not Enougth Ether Balance: "+bal
+		}
+	})
+	}else{
+		//amount to 0 
+		var basePath = location.protocol + '//' + location.host + location.pathname
+		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank"
+	}
+});// end of buyFromPool()
+
+// sellInPool()
+$( "#amountbutton12" ).click(function() {
+	console.log("click")
+	var amount = $("#amountp1").val()
+	console.log("amount: "+amount)
+	var units = $("#hodlConversion4").val()
+	console.log("units: "+units)
+	var iota = (amount*(10**units))
+	console.log("wei: "+units)
+	if(amount && amount != 0){
+		MyContract.methods.balanceOf(account).call( {from: account},async(err, bal)=>{
+			if (err){
+				console.log(err)
+			}
+		console.log("HODL balance for: "+account+" is: "+bal)
+		if(bal >= iota){
+			$('#myModalPool').modal('toggle');
+			document.getElementById("loader").style.display = "block";
+			MyContract.methods.sellInPool(iota ).send( {from: account},async(error, result)=>{
+				if(error){
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
+				}
+				console.log(JSON.stringify(result))				
+			})
+			.then(function (txHash) {
+				console.log('Transaction sent')
+				console.log(txHash)
+				//waitForTxToBeMined(txHash)
+				// tx pending
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Success: "+txHash
+			})
+		.catch(function(error) {
+				console.error(error);
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
+		})
+		}else{
+			 //not enougth balance
+			var basePath = location.protocol + '//' + location.host + location.pathname
+			window.location.href= basePath+"?error=Not Enougth HODL Balance: "+bal
+		}
+	})
+	}else{
+		//amount to 0 
+		var basePath = location.protocol + '//' + location.host + location.pathname
+		window.location.href= basePath+"?error=Amount of HODL sent cannot be 0 or blank"
+	}
+});//end of sellInPool()
+
+// removeTokensFromPool()
+$( "#amountbutton13" ).click(function() {
+	console.log("click")
+	var amount = $("#amountp2").val()
+	console.log("amount: "+amount)
+	var units = $("#hodlConversion5").val()
+	console.log("units: "+units)
+	var iota = (amount*(10**units))
+	console.log("wei: "+units)
+	if(amount && amount != 0){
+			$('#myModalPool').modal('toggle');
+			document.getElementById("loader").style.display = "block";
+			MyContract.methods.removeTokensFromPool(iota ).send( {from: account},async(error, result)=>{
+				if(error){
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
+				}
+				console.log(JSON.stringify(result))				
+			})
+			.then(function (txHash) {
+				console.log('Transaction sent')
+				console.log(txHash)
+				//waitForTxToBeMined(txHash)
+				// tx pending
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Success: "+txHash
+			})
+		.catch(function(error) {
+				console.error(error);
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
+		})
+	}else{
+		//amount to 0 
+		var basePath = location.protocol + '//' + location.host + location.pathname
+		window.location.href= basePath+"?error=Amount of HODL sent cannot be 0 or blank"
+	}
+});//end of removeTokensFromPool()
+
+// cancelAsk()
+$( "#amountbutton14" ).click(function() {
+	console.log("click")
+			$('#myModalPool').modal('toggle');
+			document.getElementById("loader").style.display = "block";
+			MyContract.methods.withdrawEthFromPoolSale().send( {from: account},async(error, result)=>{
+				if(error){
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
+				}
+				console.log(JSON.stringify(result))				
+			})
+			.then(function (txHash) {
+				console.log('Transaction sent')
+				console.log(txHash)
+				//waitForTxToBeMined(txHash)
+				// tx pending
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Success: "+txHash
+			})
+		.catch(function(error) {
+				console.error(error);
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
+		})	
+});// cancelAsk()
+
+// withdrawRemainderEthereum()
+$( "#amountbutton15" ).click(function() {
+	console.log("click")
+			$('#myModalPool').modal('toggle');
+			document.getElementById("loader").style.display = "block";
+			MyContract.methods.withdrawRemainderEthereum().send( {from: account},async(error, result)=>{
+				if(error){
+					var basePath = location.protocol + '//' + location.host + location.pathname
+					window.location.href=basePath+"?error= "+error
+				}
+				console.log(JSON.stringify(result))				
+			})
+			.then(function (txHash) {
+				console.log('Transaction sent')
+				console.log(txHash)
+				//waitForTxToBeMined(txHash)
+				// tx pending
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href= basePath+"?msg=Transaction Success: "+txHash
+			})
+		.catch(function(error) {
+				console.error(error);
+				var basePath = location.protocol + '//' + location.host + location.pathname
+				window.location.href=basePath+"?error= Refused by User: "+JSON.stringify(error)
+		})	
+});// withdrawRemainderEthereum()
 
 }// end init contract
 //////////////////////////////////////////

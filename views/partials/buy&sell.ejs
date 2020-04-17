@@ -402,7 +402,7 @@
                                                 <div class="tab-content vertical col-xs-8 col-md-8 left-aligned primary">
                                                     <div class="tab-pane fade in active" id="pool11">
 
-														<form action="/buyFromPool" method="post">
+								
 															<label for="conversion5" class="form-label">Units</label>
 															<select class="form-control input-sm m-bot15" id="conversion5" name="conversion5">
 																<option value="18">Ether</option>
@@ -419,12 +419,12 @@
 																	<span class="help-block"><small>This will buy the current HODL pool. The Pool can only be bougth as a whole.</small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Buy current HODL Pool</button>
-                                                        </form>
+                                                            <button id="amountbutton11" name="amountbutton11" class="btn btn-block btn-primary">Buy current HODL Pool</button>
+                                                      
                                                     </div>
                                                     <div class="tab-pane fade in " id="pool1">
 
-														<form action="/sellInPool" method="post">
+													
 															<label for="hodlConversion4" class="form-label">Units</label>
 															<select class="form-control input-sm m-bot15" id="hodlConversion4" name="hodlConversion4">
 																<option value="10">HODL</option>
@@ -440,47 +440,53 @@
 																	<span class="help-block"><small>This will sell HODL to the current pool. You can withdraw your token as long as the pool is not sold. Afterward you can withdraw your Ether.</small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Sell To Pool</button>
-                                                        </form>
+                                                            <button id="amountbutton12" name="amountbutton12" class="btn btn-block btn-primary">Sell To Pool</button>
+                                                       
                                                     </div>
 
                                                     <div class="tab-pane fade" id="pool2">
 
-														<form action="/removeTokensFromPool" method="post">
+													
+															<label for="hodlConversion5" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="hodlConversion5" name="hodlConversion4">
+																<option value="10">HODL</option>
+																<option value="5">Epsilon</option>
+																<option value="0">Iota</option>
+															</select>
                                                             <div class="form-group">
                                                                 <label for="amountp2" class="form-label">Amount</label>
                                                                 <input type="number" class="form-control" id="amountp2" name="amountp2" placeholder="Enter Desired Amount">
                                                             </div>
                                                             <div class="">
                                                                 <label class="">
-																	<span class="help-block"><small>This will withdraw HODL from the current pool if this address have a balance. </small></span>
+																	<span class="help-block"><small>This will withdraw HODL from the current pool if this address have a balance. Note that there is no balance an error will be returned and gas spent. </small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Withdraw HODL From Pool</button>
-                                                        </form>
+                                                            <button id="amountbutton13" name="amountbutton13" class="btn btn-block btn-primary">Withdraw HODL From Pool</button>
+                                                      
                                                     </div>
                                                     <div class="tab-pane fade" id="pool3">
 
-														<form action="/withdrawEthFromPoolSale" method="post">
+												
                                                             <div class="">
                                                                 <label class="">
 																	<span class="help-block"><small>This will withdraw Ether earings from the current pool if this address have a balance. </small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Withdraw Ether From Pool</button>
-                                                        </form>
+                                                            <button id="amountbutton14" name="amountbutton14" class="btn btn-block btn-primary">Withdraw Ether From Pool</button>
+                                                       
                                                     </div>
 
                                                     <div class="tab-pane fade" id="pool4">
 
-														<form action="/withdrawRemainderEthereum" method="post">
+												
                                                             <div class="">
                                                                 <label class="">
 																	<span class="help-block"><small> This will trigger a withdraw from any remainder Ethereum you have in the smart contract as dust from a previous transaction. </small></span>
                                                                 </label>
                                                             </div>
-                                                            <button type="submit" class="btn btn-block btn-primary">Withdraw Remainder Ethereum </button>
-                                                        </form>
+                                                            <button id="amountbutton15" name="amountbutton15" class="btn btn-block btn-primary">Withdraw Remainder Ethereum </button>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
