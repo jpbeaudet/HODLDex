@@ -1,7 +1,7 @@
 // Author: Jean-Philippe Beaudet  
 //
 // /server.js
-// Version : 0.0.1
+// Version : 01.0
 // License: GNU 3.0 General Public License
 //
 // =====================================================
@@ -16,11 +16,12 @@ var path = require('path');
 var router = express.Router();
 var hodl = require("./src/hodl.js")
 var https = require('https');
-//var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-//var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
-//var credentials = {key: privateKey, cert: certificate};
-//var httpsServer = https.createServer(credentials, app)
+var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+var credentials = {key: privateKey, cert: certificate};
+var httpsServer = https.createServer(credentials, app)
 var server = require('http').createServer(app);
+
 var browserify = require('browserify-middleware');
 
 // set the view engine to ejs
@@ -36,8 +37,18 @@ app.use(require('express-session')({
 }));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'data')));
-//provide a browserified file at a path
 
+app.enable('trust proxy');
+//provide a browserified file at a path
+app.use (function (req, res, next) {
+        if (req.secure) {
+                // request was via https, so do no special handling
+                next();
+        } else {
+                // request was via http, so redirect to https
+                res.redirect('https://' + req.headers.host + req.url);
+        }
+});
 app.get('/js/bundle.js', browserify(__dirname + '/src/index.js'));
 
 // index page 
@@ -211,7 +222,7 @@ app.get('*', function(req, res){
 });
 
 //start server
-server.listen(8080);
-//httpsServer.listen(8443)
-console.log('server started on port: 8080');
-//console.log('https server started on port: 8443');
+server.listen(80);
+httpsServer.listen(443)
+console.log('server started on port: 80');
+console.log('https server started on port: 443');
