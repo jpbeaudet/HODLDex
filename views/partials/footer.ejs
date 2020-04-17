@@ -47,7 +47,7 @@
 
        if (web3.currentProvider.isMetaMask === true || web3.currentProvider.isMist ) {
         console.log("metamask or mist");
-			//window.ethereum.enable()
+			window.ethereum.enable()
 			$('#metawarning').hide("fast")
 			console.log(web3.eth.accounts[0])
 			account = web3.eth.accounts[0]
