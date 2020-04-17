@@ -16,6 +16,7 @@ var path = require('path');
 var router = express.Router();
 var hodl = require("./src/hodl.js")
 var https = require('https');
+var fs = require('fs');
 var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
 var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
 var credentials = {key: privateKey, cert: certificate};
