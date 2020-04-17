@@ -15,6 +15,11 @@ var logger = require('morgan');
 var path = require('path');
 var router = express.Router();
 var hodl = require("./src/hodl.js")
+var https = require('https');
+//var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+//var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+//var credentials = {key: privateKey, cert: certificate};
+//var httpsServer = https.createServer(credentials, app)
 var server = require('http').createServer(app);
 var browserify = require('browserify-middleware');
 
@@ -207,4 +212,6 @@ app.get('*', function(req, res){
 
 //start server
 server.listen(8080);
+//httpsServer.listen(8443)
 console.log('server started on port: 8080');
+//console.log('https server started on port: 8443');

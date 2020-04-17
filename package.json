@@ -19,7 +19,6 @@
 		"path": "0.12.7",
 		"solc": "0.6.4",
 		"web3": "^1.2.6",
-		"connect-mongodb-session": "2.3.1",
 		"browserify-middleware": "8.1.1",
 		"ethjs-query": "0.3.8",
 		"ethjs-contract": "0.2.3"
