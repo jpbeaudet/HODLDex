@@ -98,6 +98,7 @@ module.exports = {
 				//console.log(l)
 				results.events= l
 				for (i = 0; i < l.length; i++) {
+					if(i <= 25){
 					results.timestamp=[]
 					web3.eth.getBlock(results.events[i].blockNumber, (error, block) => {
 						var date = new Date(block.timestamp*1000).toUTCString()
@@ -106,6 +107,7 @@ module.exports = {
 						
 						// here you go
 					});
+				}
 				}
 				resolve("ok")
 			})
