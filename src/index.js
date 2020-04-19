@@ -888,7 +888,7 @@ $( "#amountbutton1" ).click(function() {
 				console.log(err)
 			}
 		console.log("eth balance for: "+account+" is: "+bal)
-		if(bal >= wei){
+		if(bal >= wei && wei >- 250000000000000000){
 			$('#myModal').modal('toggle');
 			document.getElementById("loader").style.display = "block";
 			MyContract.methods.Buy().send( {from: account, value: wei},async(error, result)=>{
@@ -920,7 +920,7 @@ $( "#amountbutton1" ).click(function() {
 	}else{
 		//amount to 0 
 		var basePath = location.protocol + '//' + location.host + location.pathname
-		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank"
+		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank or less then 0.25 ETH"
 	}
 });// end of buy()  
 
@@ -939,7 +939,7 @@ $( "#amountbutton2" ).click(function() {
 				console.log(err)
 			}
 		console.log("eth balance for: "+account+" is: "+bal)
-		if(bal >= wei){
+		if(bal >= wei && wei >- 250000000000000000){
 			$('#myModal').modal('toggle');
 			document.getElementById("loader").style.display = "block";
 			MyContract.methods.buyFromReserve().send( {from: account, value: wei},async(error, result)=>{
@@ -971,7 +971,7 @@ $( "#amountbutton2" ).click(function() {
 	}else{
 		//amount to 0 
 		var basePath = location.protocol + '//' + location.host + location.pathname
-		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank"
+		window.location.href= basePath+"?error=Amount of Ether sent cannot be 0 or blank or less then 0.25 ETH"
 	}	
 });// end of buyFromReserve() 
 
