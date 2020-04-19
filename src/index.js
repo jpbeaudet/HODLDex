@@ -914,7 +914,7 @@ $( "#amountbutton1" ).click(function() {
 		}else{
 			 //not enougth balance
 			var basePath = location.protocol + '//' + location.host + location.pathname
-			window.location.href= basePath+"?error=Not Enougth Ether Balance: "+bal
+			window.location.href= basePath+"?error=Not Enougth Ether Balance Or Amoutn sent is lower then 0.25 ETH: "+bal
 		}
 	})
 	}else{
@@ -965,7 +965,7 @@ $( "#amountbutton2" ).click(function() {
 		}else{
 			// not enougth balance
 			var basePath = location.protocol + '//' + location.host + location.pathname
-			window.location.href= basePath+"?error=Not Enougth Ether Balance: "+bal
+			window.location.href= basePath+"?error=Not Enougth Ether Balance Or Amoutn sent is lower then 0.25 ETH: "+bal
 		}
 	})
 	}else{
