@@ -888,7 +888,7 @@ $( "#amountbutton1" ).click(function() {
 				console.log(err)
 			}
 		console.log("eth balance for: "+account+" is: "+bal)
-		if(bal >= wei && wei >- 250000000000000000){
+		if(bal >= wei && wei >= 250000000000000000){
 			$('#myModal').modal('toggle');
 			document.getElementById("loader").style.display = "block";
 			MyContract.methods.Buy().send( {from: account, value: wei},async(error, result)=>{
@@ -939,7 +939,7 @@ $( "#amountbutton2" ).click(function() {
 				console.log(err)
 			}
 		console.log("eth balance for: "+account+" is: "+bal)
-		if(bal >= wei && wei >- 250000000000000000){
+		if(bal >= wei && wei >= 250000000000000000){
 			$('#myModal').modal('toggle');
 			document.getElementById("loader").style.display = "block";
 			MyContract.methods.buyFromReserve().send( {from: account, value: wei},async(error, result)=>{
