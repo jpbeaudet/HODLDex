@@ -103,9 +103,10 @@ app.get('/tx/:txid', function(req, res) {
 	var error = req.query.error
 	var msg = req.query.msg
 	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details", error:error, msg:msg}
-	hodl.public(function(results){
+	//hodl.public(function(results){
+	newData.find({}, function (err, results) {
 		console.log(JSON.stringify(results))
-		data.public = results
+		data.public = results[0].public
 		res.render('pages/tx', data);
 	})  
 });
@@ -124,8 +125,9 @@ app.get('/address/:address', function(req, res) {
 			data.address = req.params.address
 			data.balanceOfUSD = adddress_details.balanceOfUSD ||0;
 			data.balanceOfETH = adddress_details.balanceOfETH ||0;
-			hodl.public(function(results){
-				data.public = results
+			//hodl.public(function(results){
+			newData.find({}, function (err, results) {
+				data.public = results[0].public
 				console.log(JSON.stringify(data))
 				res.render('pages/address', data);
 			})  
@@ -141,8 +143,9 @@ app.get('/trade', function(req, res) {
 	var error = req.query.error
 	var msg = req.query.msg
 		var data = {title: "HODL | Synchronize Your Wallet", error:error,msg:msg}
-			hodl.public(function(results){
-				data.public = results
+			//hodl.public(function(results){
+			newData.find({}, function (err, results) {
+				data.public = results[0].public
 				console.log(JSON.stringify(data))
 				if( req.session.wallet){
 					res.redirect('dex/'+req.session.wallet);
@@ -157,8 +160,9 @@ app.get('/syncNew', function(req, res) {
 	var error = req.query.error
 	var msg = req.query.msg
 		var data = {title: "HODL | Synchronize Your Wallet", error:error, msg: msg}
-			hodl.public(function(results){
-				data.public = results
+			//hodl.public(function(results){
+			newData.find({}, function (err, results) {
+				data.public = results[0].public
 				console.log(JSON.stringify(data))
 				res.render('pages/syncWallet', data);
 			})
@@ -176,8 +180,9 @@ app.post('/sync', function(req, res) {
 					res.redirect('/'+"?error= "+error);
 				}else{		
 					req.session.wallet =  req.body.wallet		
-					hodl.public(function(results){
-						data.public = results
+					//hodl.public(function(results){
+					newData.find({}, function (err, results) {
+						data.public = results[0].public
 						console.log(JSON.stringify(data))
 						if( from){
 							res.redirect('dex/'+from);
@@ -226,8 +231,9 @@ app.get('/dex/:address', function(req, res) {
 			data.address = req.params.address
 			data.balanceOfUSD = adddress_details.balanceOfUSD ||0;
 			data.balanceOfETH = adddress_details.balanceOfETH ||0;
-			hodl.public(function(results){
-				data.public = results
+			//hodl.public(function(results){
+			newData.find({}, function (err, results) {
+				data.public = results[0].public
 				console.log(JSON.stringify(data))
 				res.render('pages/trade', data);
 			})  
@@ -244,8 +250,9 @@ app.get('/support', function(req, res) {
 	var error = req.query.error
 	var msg = req.query.msg
 	var data = {title: "HODL Support & Contribute", error:error, msg:msg }
-	hodl.public(function(results){
-		data.public = results
+	//hodl.public(function(results){
+	newData.find({}, function (err, results) {
+		data.public = results[0].public
 		res.render('pages/support', data);
 	})
 });
