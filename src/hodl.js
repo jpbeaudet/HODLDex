@@ -186,6 +186,9 @@ module.exports = {
 				results.getAsks ={}
 				results.getAsks.address =  result["0"]	
 				results.getAsks.amount=  result["1"]
+				for (i = 0; i < results.getAsks.amount.length; i++) {
+					results.getAsks.amount[i] = commafy((results.getAsks.amount[i]/(10**10)).toFixed(10))
+				}
 				resolve("ok")					
 			})
 		})
@@ -198,7 +201,10 @@ module.exports = {
 				}
 				results.getBids ={}
 				results.getBids.address = result["0"]	
-				results.getBids.amount= result["1"]	
+				results.getBids.amount= result["1"]
+				for (i = 0; i < results.getBids.amount.length; i++) {
+					results.getBids.amount[i] = commafy((results.getBids.amount[i]/(10**10)).toFixed(10))
+				}
 				resolve("ok")		
 			})
 		})

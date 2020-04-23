@@ -47,12 +47,20 @@ var CronJob = require('cron').CronJob;
 var job = new CronJob('*/10 * * * * *', function() {
 	const instance = new newData();
 	hodl.public(function(results){
-		instance.public = results
-		instance.update({}, function (err) {
+		
+		newData.findOne({},  function (err,doc) {
+			if (err){
+				instance.public = results
+				instance.lastUpdated= Date.now()
+				instance.save()
+			}
+			doc.public = results
+			doc.lastUpdated = Date.now()
+			doc.save()
 			console.log("data updated in mongoose")
-			newData.find({}, function (err, docs) {
+			//newData.find({}, function (err, docs) {
 				//console.log(docs);
-			});
+			//});
 		});	
 	})  
 });
