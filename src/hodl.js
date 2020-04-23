@@ -92,11 +92,32 @@ module.exports = {
 		var results = {}
 		let promise = new Promise((resolve, reject) => {
 			setTimeout(() => resolve("done!"), 250)
-		});		
+		});	
+		var latest = 0
+		web3.eth.getBlockNumber(function(error, result){ 
+			latest = result
+		})
+			
 		let promise_getPastEvents = new Promise((resolve, reject) => {
 			MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
 				//console.log(l)
 				results.events= l
+				results.volume_hodl = 0
+				results.volume_eth = 0
+				console.log(latest)
+				for (i = 0; i < l.length; i++) {
+					if (results.events[i].event == "Trade"  && results.events[i].blockNumber >= (latest  -6000)){
+						//console.log("volume: "+ l[i].returnValues.value)
+						results.volume_hodl = (parseInt(results.volume_hodl) + parseInt(l[i].returnValues.value))
+						results.volume_eth = (parseInt(results.volume_eth) + (parseInt(results.volume_hodl/(10**10)) * (parseInt(l[i].returnValues.newPrice)/10000)))
+					}
+				}
+				//console.log("SEMIFINAL volume in HODL: "+ results.volume_hodl)
+				//console.log("SEMIFINAL volume in ETH: "+ results.volume_eth)
+				results.volume_hodl = commafy((results.volume_hodl /(10**10)).toFixed(10))
+				results.volume_eth = commafy((results.volume_eth ).toFixed(2))
+				//console.log("FINAL volume in HODL: "+ results.volume_hodl)
+				//console.log("FINAL volume in ETH: "+ results.volume_eth)
 				for (i = 0; i < l.length; i++) {
 					if(i <= 25){
 					results.timestamp=[]
