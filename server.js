@@ -25,6 +25,39 @@ var server = require('http').createServer(app);
 
 var browserify = require('browserify-middleware');
 
+//mongoose`
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/HODLdex', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+const Schema = mongoose.Schema;
+const ObjectId = Schema.ObjectId;
+ 
+const Data = new Schema({
+  author: ObjectId,
+  public: Object,
+  adress: Object,
+  lastUpdated: { type: Date, default: Date.now }
+});
+const newData = mongoose.model('data', Data);
+
+//cron
+var CronJob = require('cron').CronJob;
+var job = new CronJob('*/10 * * * * *', function() {
+	const instance = new newData();
+	hodl.public(function(results){
+		instance.public = results
+		instance.update({}, function (err) {
+			console.log("data updated in mongoose")
+			newData.find({}, function (err, docs) {
+				//console.log(docs);
+			});
+		});	
+	})  
+});
+job.start();
+
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
@@ -57,9 +90,10 @@ app.get('/', function(req, res) {
 	var error = req.query.error
 	var msg = req.query.msg
 	var data = {title: "HODL Explorer", error: error, msg: msg}
-	hodl.public(function(results){
+	//hodl.public(function(results){
+	newData.find({}, function (err, results) {
 		console.log(JSON.stringify(results))
-		data.public = results
+		data.public = results[0].public
 		res.render('pages/index', data);
 	})   
 });

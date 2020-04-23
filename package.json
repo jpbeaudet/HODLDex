@@ -21,6 +21,8 @@
 		"web3": "^1.2.6",
 		"browserify-middleware": "8.1.1",
 		"ethjs-query": "0.3.8",
-		"ethjs-contract": "0.2.3"
+		"ethjs-contract": "0.2.3",
+		"cron": "1.8.2",
+		"mongoose": "5.9.10"
 	}
 }
