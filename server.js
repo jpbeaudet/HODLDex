@@ -49,7 +49,7 @@ var job = new CronJob('*/10 * * * * *', function() {
 	hodl.public(function(results){
 		
 		newData.findOne({},  function (err,doc) {
-			if (err){
+			if (err || doc.length == 0){
 				instance.public = results
 				instance.lastUpdated= Date.now()
 				instance.save()
