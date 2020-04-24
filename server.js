@@ -44,20 +44,29 @@ const newData = mongoose.model('data', Data);
 
 //cron
 var CronJob = require('cron').CronJob;
+const instance = new newData();
+hodl.public(function(results){
+	instance.public = results
+	instance.lastUpdated= Date.now()
+	instance.save()
+	console.log("data created in mongoose")
+});
 var job = new CronJob('*/10 * * * * *', function() {
 	const instance = new newData();
 	hodl.public(function(results){
 		
 		newData.findOne({},  function (err,doc) {
-			if (err || doc.length == 0){
+			if (err || !doc ){
 				instance.public = results
 				instance.lastUpdated= Date.now()
 				instance.save()
+				console.log("data ucreated in mongoose")
+			}else{
+				doc.public = results
+				doc.lastUpdated = Date.now()
+				doc.save()
+				console.log("data updated in mongoose")
 			}
-			doc.public = results
-			doc.lastUpdated = Date.now()
-			doc.save()
-			console.log("data updated in mongoose")
 			//newData.find({}, function (err, docs) {
 				//console.log(docs);
 			//});
