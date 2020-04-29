@@ -109,7 +109,7 @@ module.exports = {
 					if (results.events[i].event == "Trade"  && results.events[i].blockNumber >= (latest  -6000)){
 						//console.log("volume: "+ l[i].returnValues.value)
 						results.volume_hodl = (parseInt(results.volume_hodl) + parseInt(l[i].returnValues.value))
-						results.volume_eth = (parseInt(results.volume_eth) + (parseInt(results.volume_hodl/(10**10)) * (parseInt(l[i].returnValues.newPrice)/10000)))
+						results.volume_eth = (parseInt(results.volume_eth) + (parseInt(results.volume_hodl/(10**10)) * ((parseInt(l[i].returnValues.newPrice-1))/10000)))
 					}
 				}
 				//console.log("SEMIFINAL volume in HODL: "+ results.volume_hodl)
