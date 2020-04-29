@@ -101,6 +101,8 @@ module.exports = {
 		let promise_getPastEvents = new Promise((resolve, reject) => {
 			MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
 				//console.log(l)
+				// keep only latest 25 events
+				l = l.slice(Math.max(l.length -25, 0))
 				results.events= l
 				results.volume_hodl = 0
 				results.volume_eth = 0
