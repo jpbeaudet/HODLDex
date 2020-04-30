@@ -45,12 +45,18 @@ const newData = mongoose.model('data', Data);
 //cron
 var CronJob = require('cron').CronJob;
 const instance = new newData();
+if(mongoose.connection.collections['datas']){
+mongoose.connection.collections['datas'].drop( function(err) {
+    console.log('collection dropped');
+});
+}else{
 hodl.public(function(results){
 	instance.public = results
 	instance.lastUpdated= Date.now()
 	instance.save()
 	console.log("data created in mongoose")
 });
+}
 var job = new CronJob('*/10 * * * * *', function() {
 	const instance = new newData();
 	hodl.public(function(results){
@@ -75,6 +81,32 @@ var job = new CronJob('*/10 * * * * *', function() {
 });
 job.start();
 
+var job2 = new CronJob('* * 1 * * *', function() {
+	mongoose.connection.collections['datas'].drop( function(err) {
+		console.log('collection dropped');
+	});
+	const instance = new newData();
+	hodl.public(function(results){
+		
+		newData.findOne({},  function (err,doc) {
+			if (err || !doc ){
+				instance.public = results
+				instance.lastUpdated= Date.now()
+				instance.save()
+				console.log("data ucreated in mongoose")
+			}else{
+				doc.public = results
+				doc.lastUpdated = Date.now()
+				doc.save()
+				console.log("data updated in mongoose")
+			}
+			//newData.find({}, function (err, docs) {
+				//console.log(docs);
+			//});
+		});	
+	})  
+});
+job2.start();
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
