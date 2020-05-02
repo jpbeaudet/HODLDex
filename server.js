@@ -45,9 +45,15 @@ const newData = mongoose.model('data', Data);
 //cron
 var CronJob = require('cron').CronJob;
 const instance = new newData();
-if(mongoose.connection.collections['datas']){
+if(mongoose.connection.collections['datas'].length > 0){
 mongoose.connection.collections['datas'].drop( function(err) {
     console.log('collection dropped');
+    hodl.public(function(results){
+	instance.public = results
+	instance.lastUpdated= Date.now()
+	instance.save()
+	console.log("data created in mongoose")
+});
 });
 }else{
 hodl.public(function(results){
