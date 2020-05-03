@@ -145,7 +145,7 @@ module.exports = {
 						console.log("hodl: "+error)
 						return cb(null, error)
 					}
-					results.getTokenBalanceOfPool =  commafy((result2/ (10**10)))
+					results.getTokenBalanceOfPool =  commafy((result2/ (10**10)).toFixed(10))
 					resolve("ok")
 										
 					})	
