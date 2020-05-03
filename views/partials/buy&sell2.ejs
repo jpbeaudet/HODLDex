@@ -65,6 +65,11 @@
                                                         </a>
                                                     </li>
                                                     <li>
+                                                        <a href="#buy2" data-toggle="tab">
+                                                            <i class="fa fa-shopping-cart"></i> Buy From Reserve
+                                                        </a>
+                                                    </li>
+                                                    <li>
                                                         <a href="#buy3" data-toggle="tab">
                                                             <i class="fa fa-user"></i> Buy From Address
                                                         </a>
@@ -106,6 +111,27 @@
                                                                 </label>
                                                             </div>
                                                             <button  id="amountbutton1" name="amountbutton1" class="btn btn-block btn-primary">Buy</button>
+                                                       
+                                                    </div>
+                                                    <div class="tab-pane fade" id="buy2">
+
+														
+															<label for="conversion2" class="form-label">Units</label>
+															<select class="form-control input-sm m-bot15" id="conversion2" name="conversion2">
+																<option value="18">Ether</option>
+																<option value="9">Gwei</option>
+																<option value="0">Wei</option>
+															</select>
+                                                            <div class="form-group">
+																<label for="amountb2" class="form-label">Amount</label>
+                                                                <input type="number" class="form-control" id="amountb2" name="amountb2" placeholder="Enter Desired Amount">
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="">
+																	<span class="help-block"><small>This will launch a trade order from the reserve and will be resolved automatically. The Ethereum sent will be redistributed randomly to a current HODL owner, including you.</small></span>
+                                                                </label>
+                                                            </div>
+                                                            <button id="amountbutton2" name="amountbutton2" class="btn btn-block btn-primary">Buy From Reserve</button>
                                                        
                                                     </div>
                                                     <div class="tab-pane fade" id="buy3">
@@ -477,4 +503,5 @@
                                                 </div>
                                             </div>
                                         </div> 
+
 
