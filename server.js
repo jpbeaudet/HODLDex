@@ -147,7 +147,7 @@ app.get('/', function(req, res) {
 	var data = {title: "HODL Explorer", error: error, msg: msg}
 	//hodl.public(function(results){
 	newData.find({}, function (err, results) {
-		console.log(JSON.stringify(results))
+		//console.log(JSON.stringify(results))
 		data.public = results[0].public
 		res.render('pages/index', data);
 	})   
@@ -160,7 +160,7 @@ app.get('/tx/:txid', function(req, res) {
 	var data = {txid: req.params.txid, title: "HODL Explorer | TX Details", error:error, msg:msg}
 	//hodl.public(function(results){
 	newData.find({}, function (err, results) {
-		console.log(JSON.stringify(results))
+		//console.log(JSON.stringify(results))
 		data.public = results[0].public
 		res.render('pages/tx', data);
 	})  
@@ -183,7 +183,7 @@ app.get('/address/:address', function(req, res) {
 			//hodl.public(function(results){
 			newData.find({}, function (err, results) {
 				data.public = results[0].public
-				console.log(JSON.stringify(data))
+				//console.log(JSON.stringify(data))
 				res.render('pages/address', data);
 			})  
 		})
@@ -201,7 +201,7 @@ app.get('/trade', function(req, res) {
 			//hodl.public(function(results){
 			newData.find({}, function (err, results) {
 				data.public = results[0].public
-				console.log(JSON.stringify(data))
+				//console.log(JSON.stringify(data))
 				if( req.session.wallet){
 					res.redirect('dex/'+req.session.wallet);
 				}else{
@@ -218,7 +218,7 @@ app.get('/syncNew', function(req, res) {
 			//hodl.public(function(results){
 			newData.find({}, function (err, results) {
 				data.public = results[0].public
-				console.log(JSON.stringify(data))
+				//console.log(JSON.stringify(data))
 				res.render('pages/syncWallet', data);
 			})
     //res.redirect('dex/'+"0xc0a9ef5ced45ea39a2b6a4f19fcd78ceeded16ed");    
@@ -238,7 +238,7 @@ app.post('/sync', function(req, res) {
 					//hodl.public(function(results){
 					newData.find({}, function (err, results) {
 						data.public = results[0].public
-						console.log(JSON.stringify(data))
+						//console.log(JSON.stringify(data))
 						if( from){
 							res.redirect('dex/'+from);
 						}else{
@@ -289,7 +289,7 @@ app.get('/dex/:address', function(req, res) {
 			//hodl.public(function(results){
 			newData.find({}, function (err, results) {
 				data.public = results[0].public
-				console.log(JSON.stringify(data))
+				//console.log(JSON.stringify(data))
 				res.render('pages/trade', data);
 			})  
 		})
