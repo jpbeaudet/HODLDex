@@ -99,7 +99,7 @@ module.exports = {
 		})
 			
 		let promise_getPastEvents = new Promise((resolve, reject) => {
-			MyContract.getPastEvents('allEvents', {fromBlock: 0, toBlock: 'latest'}, function(e,l){			
+			MyContract.getPastEvents('allEvents', {fromBlock: 10050000, toBlock: 'latest'}, function(e,l){			
 				//console.log(l)
 				// keep only latest 25 events
 				l = l.slice(Math.max(l.length -25, 0))
@@ -134,7 +134,8 @@ module.exports = {
 				}
 				resolve("ok")
 			})
-		});			
+		});
+					
 		let promise_getPastEvents_pool = new Promise((resolve, reject) => {
 			MyContract.getPastEvents('BoughtPool', {fromBlock: 0, toBlock: 'latest'}, function(e2,l2){			
 				//console.log(l)
